@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 //
-$config['base_url'] = 'http://localhost/hrd/';
+$config['base_url'] = 'https://hrd.mazhub.com/';
 
 /*
 |--------------------------------------------------------------------------
