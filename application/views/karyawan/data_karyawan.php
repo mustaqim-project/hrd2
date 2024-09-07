@@ -31,6 +31,14 @@
                     <i class="fas fa-download"></i>
                     Download Data Karyawan
                 </a>
+                <a href="<?= base_url('karyawan/importexcel'); ?>" class="btn btn-success mb-2 ml-4">
+                    <i class="fas fa-download"></i>
+                    Import Data Karyawan
+                </a>
+                <a href="<?= base_url('karyawan/templateexcel'); ?>" class="btn btn-success mb-2 ml-4">
+                    <i class="fas fa-download"></i>
+                    Download Template Excel
+                </a>
                 <!-- Jika Yang Login adalah Accounting -->
             <?php
                 //Mengambil Session

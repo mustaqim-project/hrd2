@@ -17,6 +17,7 @@ class Karyawan extends CI_Controller
 		//Memanggil Helper
 		$this->load->helper('wpp');
 	}
+	
 
 	//untuk mencari data karyawan berdasarkan NIK Karyawan Keluar
     public function get_datakaryawankeluarkaryawan()
@@ -25,6 +26,7 @@ class Karyawan extends CI_Controller
         $data = $this->karyawan->get_karyawan_bynik($nikkaryawan);
         echo json_encode($data);
     }
+	
 
 	//Menampilkan halaman awal data karyawan
 	public function karyawan()
@@ -44,6 +46,7 @@ class Karyawan extends CI_Controller
 		$this->load->view('karyawan/data_karyawan', $data);
 		$this->load->view('templates/footer');
 	}
+	
 
 	//Method Tambah Data Karyawan
 	public function tambahkaryawan()
@@ -151,7 +154,124 @@ class Karyawan extends CI_Controller
 			$this->load->view('auth/blocked');
 		}
 	}
+	public function importexcel()
+	{
+				$this->load->view('templates/header', $data);
+				$this->load->view('templates/sidebar', $data);
+				$this->load->view('templates/topbar', $data);
+				$this->load->view('karyawan/import_excel', $data);
+				$this->load->view('templates/footer');
+	}
+	public function import() {
+        $file_mimes = array('application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        
+        if (isset($_FILES['file']['name']) && in_array($_FILES['file']['type'], $file_mimes)) {
+            $arr_file = explode('.', $_FILES['file']['name']);
+            $extension = end($arr_file);
+            
+            if ('csv' == $extension) {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
 
+            $spreadsheet = $reader->load($_FILES['file']['tmp_name']);
+            $sheet_data = $spreadsheet->getActiveSheet()->toArray();
+            
+            $data = [];
+            foreach ($sheet_data as $key => $row) {
+                if ($key == 0) continue; // Lewati header
+                
+                $data[] = array(
+                    'id_karyawan' => $row[0],
+                    'perusahaan_id' => $row[1],
+                    'penempatan_id' => $row[2],
+                    'jabatan_id' => $row[3],
+                    'jam_kerja_id' => $row[4],
+                    'nik_karyawan' => $row[5],
+                    'nama_karyawan' => $row[6],
+                    'email_karyawan' => $row[7],
+                    'nomor_absen' => $row[8],
+                    'nomor_npwp' => $row[9],
+                    'foto_karyawan' => $row[10],
+                    'foto_ktp' => $row[11],
+                    'foto_npwp' => $row[12],
+                    'foto_kk' => $row[13],
+                    'tempat_lahir' => $row[14],
+                    'tanggal_lahir' => $row[15],
+                    'agama' => $row[16],
+                    'jenis_kelamin' => $row[17],
+                    'pendidikan_terakhir' => $row[18],
+                    'nomor_handphone' => $row[19],
+                    'golongan_darah' => $row[20],
+                    'alamat' => $row[21],
+                    'rt' => $row[22],
+                    'rw' => $row[23],
+                    'kelurahan' => $row[24],
+                    'kecamatan' => $row[25],
+                    'kota' => $row[26],
+                    'provinsi' => $row[27],
+                    'kode_pos' => $row[28],
+                    'nomor_rekening' => $row[29],
+                    'gaji_pokok' => $row[30],
+                    'uang_makan' => $row[31],
+                    'uang_transport' => $row[32],
+                    'tunjangan_tugas' => $row[33],
+                    'tunjangan_pulsa' => $row[34],
+                    'jumlah_upah' => $row[35],
+                    'potongan_jkn' => $row[36],
+                    'potongan_jht' => $row[37],
+                    'potongan_jp' => $row[38],
+                    'total_gaji' => $row[39],
+                    'upah_lembur_perjam' => $row[40],
+                    'tanggal_mulai_kerja' => $row[41],
+                    'tanggal_akhir_kerja' => $row[42],
+                    'status_kerja' => $row[43],
+                    'nomor_jkn' => $row[44],
+                    'nomor_jht' => $row[45],
+                    'nomor_jp' => $row[46],
+                    'nomor_jkn_istri_suami' => $row[47],
+                    'nomor_jkn_anak1' => $row[48],
+                    'nomor_jkn_anak2' => $row[49],
+                    'nomor_jkn_anak3' => $row[50],
+                    'nomor_kartu_keluarga' => $row[51],
+                    'nama_ibu' => $row[52],
+                    'nama_ayah' => $row[53],
+                    'status_nikah' => $row[54],
+                    'nik_istri_suami' => $row[55],
+                    'nama_istri_suami' => $row[56],
+                    'tempat_lahir_istri_suami' => $row[57],
+                    'tanggal_lahir_istri_suami' => $row[58],
+                    'nik_anak1' => $row[59],
+                    'nama_anak1' => $row[60],
+                    'tempat_lahir_anak1' => $row[61],
+                    'tanggal_lahir_anak1' => $row[62],
+                    'jenis_kelamin_anak1' => $row[63],
+                    'nik_anak2' => $row[64],
+                    'nama_anak2' => $row[65],
+                    'tempat_lahir_anak2' => $row[66],
+                    'tanggal_lahir_anak2' => $row[67],
+                    'jenis_kelamin_anak2' => $row[68],
+                    'nik_anak3' => $row[69],
+                    'nama_anak3' => $row[70],
+                    'tempat_lahir_anak3' => $row[71],
+                    'tanggal_lahir_anak3' => $row[72],
+                    'jenis_kelamin_anak3' => $row[73],
+                );
+            }
+
+            if (!empty($data)) {
+                $this->Karyawan_model->insert_multiple($data);
+                $this->session->set_flashdata('success', 'Data berhasil diimport');
+            } else {
+                $this->session->set_flashdata('error', 'Data gagal diimport');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'File tidak valid');
+        }
+
+        redirect('karyawan/karyawan');
+    }
 	//Method Edit Data Karyawan
 	public function editkaryawan($id)
 	{
@@ -2223,4 +2343,5 @@ class Karyawan extends CI_Controller
 
 		$pdf->Output();
 	}
+	
 }
