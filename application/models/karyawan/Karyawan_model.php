@@ -197,6 +197,9 @@ class Karyawan_model extends CI_model
         $query = $this->db->get()->row_array();
         return $query;
     }
+    public function insert_multiple($data) {
+        $this->db->insert_batch('karyawan', $data);
+    }
 
     //Melakukan query untuk tambah data karyawan
     public function tambahKaryawan()
@@ -447,6 +450,11 @@ class Karyawan_model extends CI_model
         ];
         $this->db->insert('history_jabatan', $datahistoryjabatan);
     }
+    public function insert($data)
+    {
+        return $this->db->insert('karyawan', $data);
+    }
+
 
     //Melakukan query untuk tambah data karyawan
     public function editKaryawan()

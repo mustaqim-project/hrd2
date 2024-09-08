@@ -162,6 +162,12 @@ class Karyawan extends CI_Controller
 				$this->load->view('karyawan/import_excel', $data);
 				$this->load->view('templates/footer');
 	}
+	public function download_template() {
+		$this->load->helper('download');
+		$file_path = './uploads/Template_Import_Karyawan.xlsx';
+		force_download($file_path, NULL);
+	}
+	
 	public function import() {
         $file_mimes = array('application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         

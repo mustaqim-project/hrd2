@@ -26,6 +26,14 @@
                     <i class="fas fa-plus"></i>
                     Tambah Data Inventaris Motor
                 </a>
+                <a href="<?= base_url('karyawan/importexcel'); ?>" class="btn btn-success mb-2 ml-4">
+                    <i class="fas fa-download"></i>
+                    Import Data Motor
+                </a>
+                <a href="<?= base_url('karyawan/download_template'); ?>" class="btn btn-success mb-2 ml-4">
+                    <i class="fas fa-download"></i>
+                    Download Template Excel
+                </a>
                 <!-- Jika Yang Login adalah Bukan HRD Maka Button Tambah Tidak Tampil -->
             <?php else : ?>
             <?php endif; ?>
