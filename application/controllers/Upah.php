@@ -7,7 +7,7 @@ class Upah extends CI_Controller
 	{
 		parent::__construct();
 		//Memanggil model karyawan
-		$this->load->model('Model_upah_karyawan', 'upah');
+		$this->load->model('Model_upah_karyawan', 'karyawan');
 		//Memanggil library validation
 		$this->load->library('form_validation');
 		//Memanggil library fpdf
@@ -32,128 +32,81 @@ class Upah extends CI_Controller
 	public function karyawan()
 	{
 		//Mengambil data dari session, yang sebelumnya sudah diinputkan dari dalam form login
-		$data['title'] = 'Data Karyawan';
+		$data['title'] = 'Data Upah';
 		//Menyimpan session dari login
 		$data['user'] = $this->db->get_where('login', ['email' => $this->session->userdata('email')])->row_array();
 
 		//Mengambil data karyawan, dari model, dengan di join dengan data penempatan, dan data jabatan
-		$data['joinkaryawan'] = $this->karyawan->getJoinKaryawan();
+		$data['joinkaryawan'] = $this->karyawan->getUpah();
 
 		//menampilkan halaman data karyawan
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
-		$this->load->view('karyawan/data_karyawan', $data);
+		$this->load->view('upah_karyawan/index', $data);
 		$this->load->view('templates/footer');
 	}
 	
 
 	//Method Tambah Data Karyawan
-	public function tambahkaryawan()
-	{
+	public function tambahupahkaryawan() {
+        // Mengambil Session
+        $role_id = $this->session->userdata("role_id");
 
-		//Mengambil Session
-		$role_id = $this->session->userdata("role_id");
-		//Jika yang login Admin, Dan Staff HRD
-		if ($role_id == 1 || $role_id == 11) {
+        // Jika yang login Admin, Dan Staff HRD
+        if ($role_id == 1 || $role_id == 11) {
+            // Data untuk halaman
+            $data['title'] = 'Tambah Upah Karyawan';
+            $data['user'] = $this->db->get_where('login', ['email' => $this->session->userdata('email')])->row_array();
 
-			//Mengambil data dari session, yang sebelumnya sudah diinputkan dari dalam form login
-			$data['title'] = 'Tambah Karyawan';
-			//Menyimpan session dari login
-			$data['user'] = $this->db->get_where('login', ['email' => $this->session->userdata('email')])->row_array();
+            // Validation Form Input
+            $this->form_validation->set_rules('nama_karyawan', 'Nama Karyawan', 'required');
+            $this->form_validation->set_rules('uang_kehadiran', 'Uang Kehadiran', 'required|decimal');
+            $this->form_validation->set_rules('tunjangan_jabatan', 'Tunjangan Jabatan', 'required|decimal');
+            $this->form_validation->set_rules('tunjangan_transportasi', 'Tunjangan Transportasi', 'required|decimal');
+            $this->form_validation->set_rules('tunjangan_pot', 'Tunjangan Pot', 'required|decimal');
+            $this->form_validation->set_rules('tunjangan_komunikasi', 'Tunjangan Komunikasi', 'required|decimal');
+            $this->form_validation->set_rules('tunjangan_lain_lain', 'Tunjangan Lain-Lain', 'required|decimal');
+            $this->form_validation->set_rules('insentif_libur_bersama', 'Insentif Libur Bersama', 'required|decimal');
+            $this->form_validation->set_rules('insentif_libur_perusahaan', 'Insentif Libur Perusahaan', 'required|decimal');
+            $this->form_validation->set_rules('ritase', 'Ritase', 'required|decimal');
+            $this->form_validation->set_rules('dinas', 'Dinas', 'required|decimal');
+            $this->form_validation->set_rules('rapelan', 'Rapelan', 'required|decimal');
+            $this->form_validation->set_rules('lain_lain', 'Lain-Lain', 'required|decimal');
 
-			//Mengambil data karyawan, dari model, dengan di join dengan data penempatan, dan data jabatan
-			$data['joinkaryawan'] = $this->karyawan->getJoinKaryawan();
-			//Mengambil data perusahaan
-			$data['perusahaan'] = $this->karyawan->getAllPerusahaan();
-			//Mengambil data penempatan
-			$data['penempatan'] = $this->karyawan->getAllPenempatan();
-			//Mengambil data jabatan
-			$data['jabatan'] = $this->karyawan->getAllJabatan();
-			//Mengambil data jamkerja
-			$data['jamkerja'] = $this->karyawan->getAllJamKerja();
+            if ($this->form_validation->run() == FALSE) {
+                // Menampilkan halaman tambah data karyawan
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/sidebar', $data);
+                $this->load->view('templates/topbar', $data);
+                $this->load->view('upah_karyawan/tambah_upah_karyawan', $data);
+                $this->load->view('templates/footer');
+            } else {
+                // Menyimpan data ke database
+                $upahData = array(
+                    'nama_karyawan' => $this->input->post('nama_karyawan'),
+                    'uang_kehadiran' => $this->input->post('uang_kehadiran'),
+                    'tunjangan_jabatan' => $this->input->post('tunjangan_jabatan'),
+                    'tunjangan_transportasi' => $this->input->post('tunjangan_transportasi'),
+                    'tunjangan_pot' => $this->input->post('tunjangan_pot'),
+                    'tunjangan_komunikasi' => $this->input->post('tunjangan_komunikasi'),
+                    'tunjangan_lain_lain' => $this->input->post('tunjangan_lain_lain'),
+                    'insentif_libur_bersama' => $this->input->post('insentif_libur_bersama'),
+                    'insentif_libur_perusahaan' => $this->input->post('insentif_libur_perusahaan'),
+                    'ritase' => $this->input->post('ritase'),
+                    'dinas' => $this->input->post('dinas'),
+                    'rapelan' => $this->input->post('rapelan'),
+                    'lain_lain' => $this->input->post('lain_lain'),
+                );
 
-			
-
-			$this->curl->http_header('x-rapidapi-host','restcountries-v1.p.rapidapi.com');
-			$this->curl->http_header('x-rapidapi-key','3e33277e62mshc9ce8b92dcfa9b2p13765djsn809b8f4d5bd8');
-			$this->curl->create('https://restcountries-v1.p.rapidapi.com/all');
-			$result 	= $this->curl->execute();
-			//print_r($result)->exit();
-			$data['negara']=json_decode($result);
-			
-
-			//Validation Form Input
-			$this->form_validation->set_rules('perusahaan_id', 'Nama Perusahaan', 'required');
-			$this->form_validation->set_rules('penempatan_id', 'Penempatan', 'required');
-			$this->form_validation->set_rules('jabatan_id', 'Jabatan', 'required');
-			$this->form_validation->set_rules('jam_kerja_id', 'Jam Kerja', 'required');
-			$this->form_validation->set_rules('status_kerja', 'Status Kerja', 'required');
-			$this->form_validation->set_rules('tanggal_mulai_kerja', 'Tanggal Mulai Kerja', 'required');
-			$this->form_validation->set_rules('tanggal_akhir_kerja', 'Tanggal Akhir Kerja', 'required');
-			$this->form_validation->set_rules('nik_karyawan', 'NIK Karyawan', 'required|is_unique[karyawan.nik_karyawan]|min_length[16]');
-			$this->form_validation->set_rules('nama_karyawan', 'Nama Karyawan', 'required|trim');
-			$this->form_validation->set_rules('email_karyawan', 'Alamat Email', 'valid_email|trim|is_unique[karyawan.email_karyawan]');
-			$this->form_validation->set_rules('nomor_absen', 'Nomor Absen', 'required|min_length[4]');
-			$this->form_validation->set_rules('nomor_npwp', 'Nomor NPWP', 'min_length[15]');
-			$this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
-			$this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
-			$this->form_validation->set_rules('agama', 'Agama', 'required');
-			$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
-			$this->form_validation->set_rules('pendidikan_terakhir', 'Pendidikan Terakhir', 'required');
-			$this->form_validation->set_rules('nomor_handphone', 'Nomor Handphone', 'required');
-			$this->form_validation->set_rules('golongan_darah', 'Golongan Darah', 'required');
-			$this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-			$this->form_validation->set_rules('rt', 'RT', 'required|min_length[3]');
-			$this->form_validation->set_rules('rw', 'RW', 'required|min_length[3]');
-			$this->form_validation->set_rules('provinsi', 'Provinsi', 'required');
-			$this->form_validation->set_rules('kota', 'Kota', 'required');
-			$this->form_validation->set_rules('kecamatan', 'Kecamatan', 'required');
-			$this->form_validation->set_rules('kelurahan', 'Kelurahan', 'required');
-			$this->form_validation->set_rules('kode_pos', 'Kode Pos', 'required');
-			$this->form_validation->set_rules('nomor_rekening', 'Nomor Rekening', 'required');
-			$this->form_validation->set_rules('gaji_pokok', 'Gaji Pokok', 'required');
-			$this->form_validation->set_rules('uang_makan', 'Uang Makan', 'required');
-			$this->form_validation->set_rules('uang_transport', 'Uang Transport', 'required');
-			$this->form_validation->set_rules('nomor_kartu_keluarga', 'Nomor KK', 'required|min_length[16]');
-			$this->form_validation->set_rules('status_nikah', 'Status Nikah', 'required');
-			$this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'required|trim|min_length[2]');
-			$this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'required|trim|min_length[2]');
-			$this->form_validation->set_rules('nomor_jht', 'Nomor Jaminan Hari Tua', 'min_length[11]');
-			$this->form_validation->set_rules('nomor_jp', 'Nomor Jaminan Pensiun', 'min_length[11]');
-			$this->form_validation->set_rules('nomor_jkn', 'Nomor Jaminan Kesehatan', 'min_length[13]');
-			//Akhir Validation 
-
-			//Jika form input ada yang salah
-			if ($this->form_validation->run() == false) {
-				//menampilkan halaman tambah data karyawan
-				$this->load->view('templates/header', $data);
-				$this->load->view('templates/sidebar', $data);
-				$this->load->view('templates/topbar', $data);
-				$this->load->view('karyawan/tambah_karyawan', $data);
-				$this->load->view('templates/footer');
-			}
-			//Jika semua form input benar 
-			else {
-				//Memanggil model karyawan dengan method tambahKaryawan
-				$this->karyawan->tambahKaryawan();
-				//Memanggil model karyawan dengan method tambahMasterGaji
-				$this->karyawan->tambahMasterGaji();
-				//Memanggil model karyawan dengan method tambahHistoryKontrak
-				$this->karyawan->tambahHistoryKontrak();
-				//Memanggil model karyawan dengan method tambahHistoryJabatan
-				$this->karyawan->tambahHistoryJabatan();
-
-				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Success Tambah Data Karyawan</div>');
-				//redirect ke halaman data karyawan
-				redirect('karyawan/karyawan');
-			}
-		}
-		//Jika Yang Login Bukan HRD
-		else {
-			$this->load->view('auth/blocked');
-		}
-	}
+                $this->karyawan->tambahUpahKaryawan($upahData);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Upah Karyawan berhasil ditambahkan.</div>');
+                redirect('upah/karyawan');
+            }
+        } else {
+            $this->load->view('auth/blocked');
+        }
+    }
 	public function importexcel()
 	{
 				$this->load->view('templates/header', $data);
@@ -279,7 +232,7 @@ class Upah extends CI_Controller
         redirect('karyawan/karyawan');
     }
 	//Method Edit Data Karyawan
-	public function editkaryawan($id)
+	public function editupahkaryawan($id)
 	{
 
 		//Mengambil Session
@@ -374,7 +327,7 @@ class Upah extends CI_Controller
 				$this->load->view('templates/header', $data);
 				$this->load->view('templates/sidebar', $data);
 				$this->load->view('templates/topbar', $data);
-				$this->load->view('karyawan/edit_karyawan', $data);
+				$this->load->view('upah_karyawan/edit_upah_karyawan', $data);
 				$this->load->view('templates/footer');
 			}
 			//Jika semua form input benar 
@@ -1140,67 +1093,24 @@ class Upah extends CI_Controller
 	}
 
 	//Menampilkan halaman lihat data karyawan
-	public function lihatkaryawan($id)
+	public function lihatupahkaryawan($id)
 	{
-		//Mengambil data dari session, yang sebelumnya sudah diinputkan dari dalam form login
-		$data['title'] = 'Lihat Data Karyawan';
-		//Menyimpan session dari login
+		// Mengambil data dari session, yang sebelumnya sudah diinputkan dari dalam form login
+		$data['title'] = 'Lihat Data Upah Karyawan';
+		// Menyimpan session dari login
 		$data['user'] = $this->db->get_where('login', ['email' => $this->session->userdata('email')])->row_array();
 
-		//Mengambil data karyawan, dari model, dengan di join dari berbagai table
-		$data['karyawan'] = $this->karyawan->getJoinKaryawanByID($id);
+		// Mengambil data karyawan, dari model, dengan di join dari berbagai table
+		$data['karyawan'] = $this->karyawan->getUpah2($id); // Pass the $id to getUpah()
 
-		//Fungsi untuk merubah format tanggal dari ( yyyy-mm-dd ) menjadi ( dd-mm-yyyy )
-		$datatanggal = $this->karyawan->getJoinKaryawanByID($id);
-		//membuat variabel tanggal untuk dipanggil di view ()
-		$data['tanggallahir']               = date('d-m-Y', strtotime($datatanggal['tanggal_lahir']));
-		$data['tanggalmulaikerja']          = date('d-m-Y', strtotime($datatanggal['tanggal_mulai_kerja']));
-		$data['tanggalakhirkerja']          = date('d-m-Y', strtotime($datatanggal['tanggal_akhir_kerja']));
-		$data['tanggallahiristrisuami']     = date('d-m-Y', strtotime($datatanggal['tanggal_lahir_istri_suami']));
-		$data['tanggallahiranak1']          = date('d-m-Y', strtotime($datatanggal['tanggal_lahir_anak1']));
-		$data['tanggallahiranak2']          = date('d-m-Y', strtotime($datatanggal['tanggal_lahir_anak2']));
-		$data['tanggallahiranak3']          = date('d-m-Y', strtotime($datatanggal['tanggal_lahir_anak3']));
-
-		//Mengambil data perusahaan
-		$data['perusahaan'] = $this->karyawan->getAllPerusahaan();
-		//Mengambil data penempatan
-		$data['penempatan'] = $this->karyawan->getAllPenempatan();
-		//Mengambil data jabatan
-		$data['jabatan'] = $this->karyawan->getAllJabatan();
-		//Mengambil data jam kerja
-		$data['jamkerja'] = $this->karyawan->getAllJamKerja();
-
-		//Select Option
-		//untuk tipe datanya enum
-		$data['jenis_kelamin'] = ['Pria', 'Wanita'];
-		$data['jenis_kelamin_anak1'] = [
-			'' => 'Pilih Jenis Kelamin Anak 1',
-			'Pria' => 'Pria',
-			'Wanita' => 'Wanita'
-		];
-		$data['jenis_kelamin_anak2'] = [
-			'' => 'Pilih Jenis Kelamin Anak 2',
-			'Pria' => 'Pria',
-			'Wanita' => 'Wanita'
-		];
-		$data['jenis_kelamin_anak3'] = [
-			'' => 'Pilih Jenis Kelamin Anak 3',
-			'Pria' => 'Pria',
-			'Wanita' => 'Wanita'
-		];
-		$data['agama'] = ['Islam', 'Kristen Protestan', 'Kristen Katholik', 'Hindu', 'Budha'];
-		$data['pendidikan_terakhir'] = ['SD', 'SMP', 'SMA', 'D3', 'S1', 'S2', 'S3'];
-		$data['golongan_darah'] = ['A', 'B', 'AB', 'O'];
-		$data['status_kerja'] = ['Kontrak', 'Tetap'];
-		$data['status_nikah'] = ['Single', 'Menikah', 'Duda', 'Janda'];
-
-		//menampilkan halaman data karyawan
+		// Menampilkan halaman data karyawan
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
-		$this->load->view('karyawan/lihat_karyawan', $data);
+		$this->load->view('upah_karyawan/lihat_upah_karyawan', $data);
 		$this->load->view('templates/footer');
 	}
+
 
 	//Method untuk membuat load Download Data Karyawan
 	public function downloaddatakaryawan()

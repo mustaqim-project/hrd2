@@ -8,6 +8,11 @@ class Karyawan_model extends CI_model
         $query = $this->db->get('perusahaan')->result_array();
         return $query;
     }
+    public function getUpah()
+    {
+        $query = $this->db->get('upah_karyawan')->result_array();
+        return $query;
+    }
 
     //mengambil semua data penempatan
     public function getAllPenempatan()
