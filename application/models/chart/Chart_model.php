@@ -380,55 +380,38 @@ class Chart_model extends CI_Model
         return $this->db->get()->result();
     }
 
-    // Jumlah total karyawan di semua cabang
-    public function getTotalKaryawan() {
-        $this->db->select('COUNT(nik_karyawan) as total_karyawan');
-        $this->db->from('karyawan');
-        return $this->db->get()->row()->total_karyawan;
-    }
-
-    // Jumlah karyawan di cabang/site tertentu
-    public function getKaryawanByCabang($cabang_id) {
-        $this->db->select('COUNT(nik_karyawan) as total_karyawan');
-        $this->db->from('karyawan');
-        $this->db->where('penempatan_id', $cabang_id);
-        return $this->db->get()->row()->total_karyawan;
-    }
-
-    // Jumlah karyawan yang keluar
-    public function getKaryawanKeluar() {
-        $this->db->select('COUNT(nik_karyawan) as total_karyawan_keluar');
-        $this->db->from('karyawan');
-        $this->db->where('status_karyawan', 'keluar');
-        return $this->db->get()->row()->total_karyawan_keluar;
-    }
+    
 
     // Menampilkan data grafik kehadiran karyawan per hari/minggu/bulan
-    public function getGrafikKehadiran($periode) {
-        $this->db->select('tanggal_absen, COUNT(nik_karyawan_absen) as jumlah_kehadiran');
-        $this->db->from('absensi');
-        if ($periode == 'hari') {
-            $this->db->group_by('tanggal_absen');
-        } elseif ($periode == 'minggu') {
-            $this->db->group_by('YEARWEEK(tanggal_absen)');
-        } elseif ($periode == 'bulan') {
-            $this->db->group_by('MONTH(tanggal_absen)');
+	public function getGrafikKehadiran($periode) {
+        $this->db->select("COUNT(id_absen) as jumlah_kehadiran, DATE(tanggal_absen) as tanggal");
+        $this->db->from("absensi");
+        $this->db->where("keterangan_absen", "Hadir");
+        
+        if($periode == 'bulan') {
+            $this->db->group_by("MONTH(tanggal_absen)");
+        } elseif($periode == 'minggu') {
+            $this->db->group_by("WEEK(tanggal_absen)");
+        } else {
+            $this->db->group_by("DAY(tanggal_absen)");
         }
+
         return $this->db->get()->result();
     }
 
-    // Jumlah pembayaran payroll per hari/minggu/bulan
+    // Mendapatkan data pembayaran payroll
     public function getPayrollPembayaran($periode) {
-        $this->db->select('tanggal_gaji, SUM(jumlah_gaji) as total_gaji');
-        $this->db->from('history_gaji');
-        if ($periode == 'hari') {
-            $this->db->group_by('tanggal_gaji');
-        } elseif ($periode == 'minggu') {
-            $this->db->group_by('YEARWEEK(tanggal_gaji)');
-        } elseif ($periode == 'bulan') {
-            $this->db->group_by('MONTH(tanggal_gaji)');
+        $this->db->select("SUM(take_home_pay_history) as total_payroll, DATE(periode_akhir_gaji_history) as tanggal");
+        $this->db->from("history_gaji");
+        
+        if($periode == 'bulan') {
+            $this->db->group_by("MONTH(periode_akhir_gaji_history)");
+        } elseif($periode == 'minggu') {
+            $this->db->group_by("WEEK(periode_akhir_gaji_history)");
+        } else {
+            $this->db->group_by("DAY(periode_akhir_gaji_history)");
         }
+
         return $this->db->get()->result();
     }
-
 }
