@@ -94,17 +94,7 @@
                         </select>
                         <small class="form-text text-danger"><?php echo form_error('status_kerja'); ?></small>
                     </div>
-					<div class="form-group">
-						<label for="jumlah_anak">Jumlah Tanggungan</label>
-						<select name="jumlah_anak" id="jumlah_anak" class="form-control">
-							<option value="">Pilih Jumlah Anak</option>
-							<option value="0" <?= set_select('jumlah_anak', '0'); ?>>0</option>
-							<option value="1" <?= set_select('jumlah_anak', '1'); ?>>1</option>
-							<option value="2" <?= set_select('jumlah_anak', '2'); ?>>2</option>
-							<option value="3" <?= set_select('jumlah_anak', '3'); ?>>3</option>
-						</select>
-						<small class="form-text text-danger"><?php echo form_error('jumlah_anak'); ?></small>
-					</div>
+					
                     <div class="form-group">
                         <input type="text" value="<?= set_value('tanggal_mulai_kerja'); ?>" id="tanggal_mulai_kerja" name="tanggal_mulai_kerja" readonly="readonly" placeholder="Tanggal Masuk Kerja ( yyyy-mm-dd )">
                         <small class="form-text text-danger"><?php echo form_error('tanggal_mulai_kerja'); ?></small>
@@ -342,7 +332,17 @@
                         </select>
                         <small class="form-text text-danger"><?php echo form_error('status_nikah'); ?></small>
                     </div>
-
+					<div class="form-group">
+						<label for="jumlah_anak">Jumlah Tanggungan</label>
+						<select name="jumlah_anak" id="jumlah_anak" class="form-control">
+							<option value="">Pilih Jumlah Anak</option>
+							<option value="0" <?= set_select('jumlah_anak', '0'); ?>>0</option>
+							<option value="1" <?= set_select('jumlah_anak', '1'); ?>>1</option>
+							<option value="2" <?= set_select('jumlah_anak', '2'); ?>>2</option>
+							<option value="3" <?= set_select('jumlah_anak', '3'); ?>>3</option>
+						</select>
+						<small class="form-text text-danger"><?php echo form_error('jumlah_anak'); ?></small>
+					</div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <input type="text" value="<?= set_value('nama_ayah'); ?>" class="form-control" maxlength="50" id="nama_ayah" onkeyup="huruf(this);" name="nama_ayah" placeholder="Masukan Nama Ayah">
