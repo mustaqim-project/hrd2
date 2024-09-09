@@ -97,109 +97,95 @@
 	<!-- row -->
 
 
-	<div class="container-fluid">
-		<!-- Filter Periode -->
-		<form method="get" action="<?= site_url('home') ?>">
-			<div class="form-group">
-				<label for="periode">Pilih Periode:</label>
-				<select name="periode" id="periode" class="form-control" onchange="this.form.submit()">
-					<option value="bulan" <?= $periode == 'bulan' ? 'selected' : '' ?>>Bulan</option>
-					<option value="minggu" <?= $periode == 'minggu' ? 'selected' : '' ?>>Minggu</option>
-					<option value="hari" <?= $periode == 'hari' ? 'selected' : '' ?>>Hari</option>
-				</select>
-			</div>
-		</form>
+	<form method="get" action="<?= base_url('home/index') ?>">
+        <div class="form-group">
+            <label for="periode">Pilih Periode:</label>
+            <select name="periode" id="periode" class="form-control">
+                <option value="hari" <?= $periode == 'hari' ? 'selected' : '' ?>>Harian</option>
+                <option value="minggu" <?= $periode == 'minggu' ? 'selected' : '' ?>>Mingguan</option>
+                <option value="bulan" <?= $periode == 'bulan' ? 'selected' : '' ?>>Bulanan</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Tampilkan</button>
+    </form>
 
-		<!-- Grafik Kehadiran -->
-		<div class="card mb-4">
-			<div class="card-header">
-				<i class="fas fa-chart-bar"></i> Grafik Kehadiran Karyawan
-			</div>
-			<div class="card-body">
-				<canvas id="grafikKehadiran"></canvas>
-			</div>
-		</div>
+    <!-- Grafik Kehadiran -->
+    <div class="card">
+        <div class="card-header">
+            Grafik Kehadiran Karyawan
+        </div>
+        <div class="card-body">
+            <canvas id="grafikKehadiran"></canvas>
+        </div>
+    </div>
 
-		<!-- Grafik Payroll -->
-		<div class="card mb-4">
-			<div class="card-header">
-				<i class="fas fa-chart-bar"></i> Grafik Pembayaran Payroll
-			</div>
-			<div class="card-body">
-				<canvas id="grafikPayroll"></canvas>
-			</div>
-		</div>
-	</div>
+    <!-- Grafik Payroll -->
+    <div class="card mt-4">
+        <div class="card-header">
+            Grafik Pembayaran Payroll
+        </div>
+        <div class="card-body">
+            <canvas id="grafikPayroll"></canvas>
+        </div>
+    </div>
 
-	<!-- Script untuk grafik menggunakan Chart.js -->
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<script>
-		const kehadiranData = <?= json_encode($grafik_kehadiran) ?>;
-		const payrollData = <?= json_encode($grafik_payroll) ?>;
+</div>
+<!-- /.container-fluid -->
 
-		function generateLabels(data) {
-			return data.map(item => {
-				const date = new Date(item.tanggal);
-				if ('bulan' === '<?= $periode ?>') {
-					return `${date.getMonth() + 1}/${date.getFullYear()}`;
-				} else if ('minggu' === '<?= $periode ?>') {
-					return `Minggu ${date.getWeek()} ${date.getFullYear()}`;
-				} else {
-					return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-				}
-			});
-		}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Grafik Kehadiran
+        var ctx1 = document.getElementById('grafikKehadiran').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode(array_column($grafik_kehadiran, 'tanggal')) ?>,
+                datasets: [
+                    {
+                        label: 'Jumlah Kehadiran',
+                        data: <?= json_encode(array_column($grafik_kehadiran, 'jumlah_kehadiran')) ?>,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
 
-		function generateData(data) {
-			return data.map(item => item.jumlah_kehadiran || item.total_payroll);
-		}
-
-		// Grafik Kehadiran
-		const ctxKehadiran = document.getElementById('grafikKehadiran').getContext('2d');
-		new Chart(ctxKehadiran, {
-			type: 'bar',
-			data: {
-				labels: generateLabels(kehadiranData),
-				datasets: [{
-					label: 'Jumlah Kehadiran',
-					data: generateData(kehadiranData),
-					backgroundColor: 'rgba(75, 192, 192, 0.2)',
-					borderColor: 'rgba(75, 192, 192, 1)',
-					borderWidth: 1
-				}]
-			},
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true
-					}
-				}
-			}
-		});
-
-		// Grafik Payroll
-		const ctxPayroll = document.getElementById('grafikPayroll').getContext('2d');
-		new Chart(ctxPayroll, {
-			type: 'bar',
-			data: {
-				labels: generateLabels(payrollData),
-				datasets: [{
-					label: 'Total Pembayaran Payroll',
-					data: generateData(payrollData),
-					backgroundColor: 'rgba(153, 102, 255, 0.2)',
-					borderColor: 'rgba(153, 102, 255, 1)',
-					borderWidth: 1
-				}]
-			},
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true
-					}
-				}
-			}
-		});
-	</script>
+        // Grafik Payroll
+        var ctx2 = document.getElementById('grafikPayroll').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode(array_column($grafik_payroll, 'tanggal')) ?>,
+                datasets: [
+                    {
+                        label: 'Total Pembayaran Payroll',
+                        data: <?= json_encode(array_column($grafik_payroll, 'total_payroll')) ?>,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
 	<!-- Chart -->
 	<!-- Bar Chart -->
 	<!-- Jangan Dihapus -->
