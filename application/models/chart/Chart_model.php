@@ -358,4 +358,77 @@ class Chart_model extends CI_Model
         $this->db->where('penempatan', 'PDC Toyota Cibitung');
         return $this->db->get()->num_rows();
     }
+
+	public function getKaryawanData($tanggal_awal = null, $tanggal_akhir = null, $cabang_id = null) {
+        $this->db->select('*');
+        $this->db->from('absensi');
+        $this->db->join('karyawan', 'karyawan.nik_karyawan=absensi.nik_karyawan_absen');
+        $this->db->join('penempatan', 'karyawan.penempatan_id=penempatan.id');
+
+        // Filter berdasarkan cabang/site
+        if ($cabang_id) {
+            $this->db->where('penempatan.id', $cabang_id);
+        }
+
+        // Filter berdasarkan rentang tanggal absensi
+        if ($tanggal_awal && $tanggal_akhir) {
+            $this->db->where('tanggal_absen >=', $tanggal_awal);
+            $this->db->where('tanggal_absen <=', $tanggal_akhir);
+        }
+
+        $this->db->order_by('nama_karyawan', 'asc');
+        return $this->db->get()->result();
+    }
+
+    // Jumlah total karyawan di semua cabang
+    public function getTotalKaryawan() {
+        $this->db->select('COUNT(nik_karyawan) as total_karyawan');
+        $this->db->from('karyawan');
+        return $this->db->get()->row()->total_karyawan;
+    }
+
+    // Jumlah karyawan di cabang/site tertentu
+    public function getKaryawanByCabang($cabang_id) {
+        $this->db->select('COUNT(nik_karyawan) as total_karyawan');
+        $this->db->from('karyawan');
+        $this->db->where('penempatan_id', $cabang_id);
+        return $this->db->get()->row()->total_karyawan;
+    }
+
+    // Jumlah karyawan yang keluar
+    public function getKaryawanKeluar() {
+        $this->db->select('COUNT(nik_karyawan) as total_karyawan_keluar');
+        $this->db->from('karyawan');
+        $this->db->where('status_karyawan', 'keluar');
+        return $this->db->get()->row()->total_karyawan_keluar;
+    }
+
+    // Menampilkan data grafik kehadiran karyawan per hari/minggu/bulan
+    public function getGrafikKehadiran($periode) {
+        $this->db->select('tanggal_absen, COUNT(nik_karyawan_absen) as jumlah_kehadiran');
+        $this->db->from('absensi');
+        if ($periode == 'hari') {
+            $this->db->group_by('tanggal_absen');
+        } elseif ($periode == 'minggu') {
+            $this->db->group_by('YEARWEEK(tanggal_absen)');
+        } elseif ($periode == 'bulan') {
+            $this->db->group_by('MONTH(tanggal_absen)');
+        }
+        return $this->db->get()->result();
+    }
+
+    // Jumlah pembayaran payroll per hari/minggu/bulan
+    public function getPayrollPembayaran($periode) {
+        $this->db->select('tanggal_gaji, SUM(jumlah_gaji) as total_gaji');
+        $this->db->from('history_gaji');
+        if ($periode == 'hari') {
+            $this->db->group_by('tanggal_gaji');
+        } elseif ($periode == 'minggu') {
+            $this->db->group_by('YEARWEEK(tanggal_gaji)');
+        } elseif ($periode == 'bulan') {
+            $this->db->group_by('MONTH(tanggal_gaji)');
+        }
+        return $this->db->get()->result();
+    }
+
 }
