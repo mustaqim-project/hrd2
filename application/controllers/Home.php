@@ -125,11 +125,11 @@ class Home extends CI_Controller
 
 		
 		$periode = $this->input->get('periode', true) ?: 'bulan'; // default: bulan
-        $data['grafik_kehadiran'] = $this->Karyawan_model->getGrafikKehadiran($periode);
 
-        // Grafik pembayaran payroll per bulan/minggu/hari
+        // Ambil data grafik kehadiran dan payroll berdasarkan periode
+        $data['grafik_kehadiran'] = $this->Karyawan_model->getGrafikKehadiran($periode);
         $data['grafik_payroll'] = $this->Karyawan_model->getPayrollPembayaran($periode);
-        
+        $data['periode'] = $periode; // Kirim periode kembali ke view untuk dipilih secara default
 
 
 
