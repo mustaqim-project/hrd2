@@ -121,16 +121,6 @@ class Home extends CI_Controller
         //Jumlah Semua Karyawan 
         $data['karyawanALL'] = $data['karyawanBSD'] + $data['karyawanPDC'] + $data['karyawanAccounting'];
 
-
-
-		$periode = $this->input->get('periode', true) ?: 'bulan'; // default: bulan
-
-		// Ambil data grafik kehadiran dan payroll berdasarkan periode
-		$data['grafik_kehadiran'] = $this->chart->getGrafikKehadiran($periode);
-		$data['grafik_payroll'] = $this->chart->getPayrollPembayaran($periode);
-		$data['periode'] = $periode; // Kirim periode kembali ke view untuk dipilih secara default
-	
-		
         //menampilkan Halaman Utama
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 07, 2024 at 02:14 PM
--- Server version: 10.6.17-MariaDB
--- PHP Version: 8.1.27
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 09 Sep 2024 pada 07.06
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `djardev_hrd`
+-- Database: `hrd`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absensi`
+-- Struktur dari tabel `absensi`
 --
 
 CREATE TABLE `absensi` (
@@ -39,7 +39,7 @@ CREATE TABLE `absensi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `absensi`
+-- Dumping data untuk tabel `absensi`
 --
 
 INSERT INTO `absensi` (`id_absen`, `nik_karyawan_absen`, `tanggal_absen`, `tanggal_selesai`, `keterangan_absen`, `lama_absen`, `keterangan`, `jenis_cuti`) VALUES
@@ -2310,7 +2310,7 @@ INSERT INTO `absensi` (`id_absen`, `nik_karyawan_absen`, `tanggal_absen`, `tangg
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absensi_2018`
+-- Struktur dari tabel `absensi_2018`
 --
 
 CREATE TABLE `absensi_2018` (
@@ -2325,7 +2325,7 @@ CREATE TABLE `absensi_2018` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `absensi_2018`
+-- Dumping data untuk tabel `absensi_2018`
 --
 
 INSERT INTO `absensi_2018` (`id_absen`, `nik_karyawan_absen`, `tanggal_absen`, `tanggal_selesai`, `keterangan_absen`, `lama_absen`, `keterangan`, `jenis_cuti`) VALUES
@@ -3585,7 +3585,7 @@ INSERT INTO `absensi_2018` (`id_absen`, `nik_karyawan_absen`, `tanggal_absen`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absensi_2020`
+-- Struktur dari tabel `absensi_2020`
 --
 
 CREATE TABLE `absensi_2020` (
@@ -3600,7 +3600,7 @@ CREATE TABLE `absensi_2020` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `absensi_2020`
+-- Dumping data untuk tabel `absensi_2020`
 --
 
 INSERT INTO `absensi_2020` (`id_absen`, `nik_karyawan_absen`, `tanggal_absen`, `tanggal_selesai`, `keterangan_absen`, `lama_absen`, `keterangan`, `jenis_cuti`) VALUES
@@ -3612,7 +3612,7 @@ INSERT INTO `absensi_2020` (`id_absen`, `nik_karyawan_absen`, `tanggal_absen`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gaji_master`
+-- Struktur dari tabel `gaji_master`
 --
 
 CREATE TABLE `gaji_master` (
@@ -3639,7 +3639,7 @@ CREATE TABLE `gaji_master` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `gaji_master`
+-- Dumping data untuk tabel `gaji_master`
 --
 
 INSERT INTO `gaji_master` (`id_gaji_master`, `karyawan_id_master`, `gaji_pokok_master`, `upah_lembur_perjam_master`, `uang_makan_master`, `uang_transport_master`, `tunjangan_tugas_master`, `tunjangan_pulsa_master`, `jumlah_upah_master`, `potongan_bpjsks_perusahaan_master`, `potongan_bpjsks_karyawan_master`, `potongan_jht_karyawan_master`, `potongan_jp_karyawan_master`, `jumlah_bpjstk_karyawan_master`, `potongan_jht_perusahaan_master`, `potongan_jp_perusahaan_master`, `potongan_jkk_perusahaan_master`, `potongan_jkm_perusahaan_master`, `jumlah_bpjstk_perusahaan_master`, `take_home_pay_master`) VALUES
@@ -4219,12 +4219,13 @@ INSERT INTO `gaji_master` (`id_gaji_master`, `karyawan_id_master`, `gaji_pokok_m
 (573, '1810056801020002', '4230900', '24456', '0', '0', '0', '0', '4230900', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '4230900'),
 (574, '9999999999999999', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
 (575, '3374012501860002', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
-(576, '1806115805010002', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+(576, '1806115805010002', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'),
+(577, '1212121212121212', '10000000', '179769', '10000000', '1000000', '100000', '10000000', '31100000', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '31100000');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history_gaji`
+-- Struktur dari tabel `history_gaji`
 --
 
 CREATE TABLE `history_gaji` (
@@ -4253,7 +4254,7 @@ CREATE TABLE `history_gaji` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `history_gaji`
+-- Dumping data untuk tabel `history_gaji`
 --
 
 INSERT INTO `history_gaji` (`id_history_gaji`, `karyawan_id_history`, `periode_awal_gaji_history`, `periode_akhir_gaji_history`, `gaji_pokok_history`, `upah_lembur_perjam_history`, `uang_makan_history`, `uang_transport_history`, `tunjangan_tugas_history`, `tunjangan_pulsa_history`, `jumlah_upah_history`, `potongan_bpjsks_perusahaan_history`, `potongan_bpjsks_karyawan_history`, `potongan_jht_karyawan_history`, `potongan_jp_karyawan_history`, `jumlah_bpjstk_karyawan_history`, `potongan_jht_perusahaan_history`, `potongan_jp_perusahaan_history`, `potongan_jkk_perusahaan_history`, `potongan_jkm_perusahaan_history`, `jumlah_bpjstk_perusahaan_history`, `take_home_pay_history`) VALUES
@@ -6254,7 +6255,7 @@ INSERT INTO `history_gaji` (`id_history_gaji`, `karyawan_id_history`, `periode_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history_jabatan`
+-- Struktur dari tabel `history_jabatan`
 --
 
 CREATE TABLE `history_jabatan` (
@@ -6267,7 +6268,7 @@ CREATE TABLE `history_jabatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `history_jabatan`
+-- Dumping data untuk tabel `history_jabatan`
 --
 
 INSERT INTO `history_jabatan` (`id_history_jabatan`, `karyawan_id`, `penempatan_id_history_jabatan`, `jabatan_id_history_jabatan`, `tanggal_mutasi`, `file_surat_mutasi`) VALUES
@@ -6574,12 +6575,13 @@ INSERT INTO `history_jabatan` (`id_history_jabatan`, `karyawan_id`, `penempatan_
 (578, '1810056801020002', '3', '19', '2021-11-11', ''),
 (579, '9999999999999999', '5', '10', '2022-01-03', ''),
 (580, '3374012501860002', '26', '8', '2022-01-03', ''),
-(581, '1806115805010002', '7', '19', '2022-01-25', '');
+(581, '1806115805010002', '7', '19', '2022-01-25', ''),
+(582, '1212121212121212', '1', '2', '2024-09-09', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history_keluarga`
+-- Struktur dari tabel `history_keluarga`
 --
 
 CREATE TABLE `history_keluarga` (
@@ -6597,7 +6599,7 @@ CREATE TABLE `history_keluarga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `history_keluarga`
+-- Dumping data untuk tabel `history_keluarga`
 --
 
 INSERT INTO `history_keluarga` (`id_history_keluarga`, `karyawan_id`, `hubungan_keluarga`, `nik_history_keluarga`, `nomor_bpjs_kesehatan_history_keluarga`, `nama_history_keluarga`, `jenis_kelamin_history_keluarga`, `tempat_lahir_history_keluarga`, `tanggal_lahir_history_keluarga`, `golongan_darah_history_keluarga`, `file_history_keluarga`) VALUES
@@ -7070,7 +7072,7 @@ INSERT INTO `history_keluarga` (`id_history_keluarga`, `karyawan_id`, `hubungan_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history_kontrak`
+-- Struktur dari tabel `history_kontrak`
 --
 
 CREATE TABLE `history_kontrak` (
@@ -7084,7 +7086,7 @@ CREATE TABLE `history_kontrak` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `history_kontrak`
+-- Dumping data untuk tabel `history_kontrak`
 --
 
 INSERT INTO `history_kontrak` (`id_history_kontrak`, `karyawan_id`, `tanggal_awal_kontrak`, `tanggal_akhir_kontrak`, `status_kontrak_kerja`, `masa_kontrak`, `jumlah_kontrak`) VALUES
@@ -8382,12 +8384,13 @@ INSERT INTO `history_kontrak` (`id_history_kontrak`, `karyawan_id`, `tanggal_awa
 (3164, '3304111206960003', '2022-01-01', '2022-12-31', 'PKWT', '1 Tahun', '1'),
 (3165, '9999999999999999', '2022-01-03', '2022-03-31', 'PKWT', '3 Bulan', '1'),
 (3166, '3374012501860002', '2022-01-03', '2022-03-31', 'PKWT', '3 Bulan', '1'),
-(3167, '1806115805010002', '2022-01-25', '2023-01-24', 'PKWT', '1 Tahun', '1');
+(3167, '1806115805010002', '2022-01-25', '2023-01-24', 'PKWT', '1 Tahun', '1'),
+(3168, '1212121212121212', '2024-09-09', '2024-09-11', 'PKWT', '0 Bulan', '1');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history_pendidikan_formal`
+-- Struktur dari tabel `history_pendidikan_formal`
 --
 
 CREATE TABLE `history_pendidikan_formal` (
@@ -8401,7 +8404,7 @@ CREATE TABLE `history_pendidikan_formal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `history_pendidikan_formal`
+-- Dumping data untuk tabel `history_pendidikan_formal`
 --
 
 INSERT INTO `history_pendidikan_formal` (`id_history_pendidikan_formal`, `karyawan_id`, `tingkat_pendidikan_formal`, `nama_instansi_pendidikan`, `jurusan`, `tahun_lulus`, `dokumen_pendidikan_formal`) VALUES
@@ -8413,7 +8416,7 @@ INSERT INTO `history_pendidikan_formal` (`id_history_pendidikan_formal`, `karyaw
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history_pendidikan_non_formal`
+-- Struktur dari tabel `history_pendidikan_non_formal`
 --
 
 CREATE TABLE `history_pendidikan_non_formal` (
@@ -8429,7 +8432,7 @@ CREATE TABLE `history_pendidikan_non_formal` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history_training_eksternal`
+-- Struktur dari tabel `history_training_eksternal`
 --
 
 CREATE TABLE `history_training_eksternal` (
@@ -8449,7 +8452,7 @@ CREATE TABLE `history_training_eksternal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `history_training_eksternal`
+-- Dumping data untuk tabel `history_training_eksternal`
 --
 
 INSERT INTO `history_training_eksternal` (`id_history_training_eksternal`, `karyawan_id`, `institusi_penyelenggara_training_eksternal`, `perihal_training_eksternal`, `hari_awal_training_eksternal`, `hari_akhir_training_eksternal`, `tanggal_awal_training_eksternal`, `tanggal_akhir_training_eksternal`, `jam_training_eksternal`, `lokasi_training_eksternal`, `alamat_training_eksternal`, `nomor_surat_training_eksternal`, `dokumen_materi_training_eksternal`) VALUES
@@ -8462,7 +8465,7 @@ INSERT INTO `history_training_eksternal` (`id_history_training_eksternal`, `kary
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history_training_internal`
+-- Struktur dari tabel `history_training_internal`
 --
 
 CREATE TABLE `history_training_internal` (
@@ -8482,7 +8485,7 @@ CREATE TABLE `history_training_internal` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventaris_laptop`
+-- Struktur dari tabel `inventaris_laptop`
 --
 
 CREATE TABLE `inventaris_laptop` (
@@ -8500,7 +8503,7 @@ CREATE TABLE `inventaris_laptop` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `inventaris_laptop`
+-- Dumping data untuk tabel `inventaris_laptop`
 --
 
 INSERT INTO `inventaris_laptop` (`id_inventaris_laptop`, `karyawan_id`, `merk_laptop`, `type_laptop`, `processor`, `ram`, `hardisk`, `vga`, `sistem_operasi`, `tanggal_penyerahan_laptop`, `foto_laptop`) VALUES
@@ -8509,7 +8512,7 @@ INSERT INTO `inventaris_laptop` (`id_inventaris_laptop`, `karyawan_id`, `merk_la
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventaris_mobil`
+-- Struktur dari tabel `inventaris_mobil`
 --
 
 CREATE TABLE `inventaris_mobil` (
@@ -8532,7 +8535,7 @@ CREATE TABLE `inventaris_mobil` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventaris_motor`
+-- Struktur dari tabel `inventaris_motor`
 --
 
 CREATE TABLE `inventaris_motor` (
@@ -8555,7 +8558,7 @@ CREATE TABLE `inventaris_motor` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jabatan`
+-- Struktur dari tabel `jabatan`
 --
 
 CREATE TABLE `jabatan` (
@@ -8564,7 +8567,7 @@ CREATE TABLE `jabatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `jabatan`
+-- Dumping data untuk tabel `jabatan`
 --
 
 INSERT INTO `jabatan` (`id`, `jabatan`) VALUES
@@ -8607,7 +8610,7 @@ INSERT INTO `jabatan` (`id`, `jabatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jam_kerja`
+-- Struktur dari tabel `jam_kerja`
 --
 
 CREATE TABLE `jam_kerja` (
@@ -8617,7 +8620,7 @@ CREATE TABLE `jam_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `jam_kerja`
+-- Dumping data untuk tabel `jam_kerja`
 --
 
 INSERT INTO `jam_kerja` (`id_jam_kerja`, `jam_masuk`, `jam_pulang`) VALUES
@@ -8630,7 +8633,7 @@ INSERT INTO `jam_kerja` (`id_jam_kerja`, `jam_masuk`, `jam_pulang`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jam_lembur`
+-- Struktur dari tabel `jam_lembur`
 --
 
 CREATE TABLE `jam_lembur` (
@@ -8641,7 +8644,7 @@ CREATE TABLE `jam_lembur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `jam_lembur`
+-- Dumping data untuk tabel `jam_lembur`
 --
 
 INSERT INTO `jam_lembur` (`id_jam_lembur`, `jam_masuk`, `jam_istirahat`, `jam_pulang`) VALUES
@@ -8655,7 +8658,7 @@ INSERT INTO `jam_lembur` (`id_jam_lembur`, `jam_masuk`, `jam_istirahat`, `jam_pu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `karyawan`
+-- Struktur dari tabel `karyawan`
 --
 
 CREATE TABLE `karyawan` (
@@ -8736,7 +8739,7 @@ CREATE TABLE `karyawan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `karyawan`
+-- Dumping data untuk tabel `karyawan`
 --
 
 INSERT INTO `karyawan` (`id_karyawan`, `perusahaan_id`, `penempatan_id`, `jabatan_id`, `jam_kerja_id`, `nik_karyawan`, `nama_karyawan`, `email_karyawan`, `nomor_absen`, `nomor_npwp`, `foto_karyawan`, `foto_ktp`, `foto_npwp`, `foto_kk`, `tempat_lahir`, `tanggal_lahir`, `agama`, `jenis_kelamin`, `pendidikan_terakhir`, `nomor_handphone`, `golongan_darah`, `alamat`, `rt`, `rw`, `kelurahan`, `kecamatan`, `kota`, `provinsi`, `kode_pos`, `nomor_rekening`, `gaji_pokok`, `uang_makan`, `uang_transport`, `tunjangan_tugas`, `tunjangan_pulsa`, `jumlah_upah`, `potongan_jkn`, `potongan_jht`, `potongan_jp`, `total_gaji`, `upah_lembur_perjam`, `tanggal_mulai_kerja`, `tanggal_akhir_kerja`, `status_kerja`, `nomor_jkn`, `nomor_jht`, `nomor_jp`, `nomor_jkn_istri_suami`, `nomor_jkn_anak1`, `nomor_jkn_anak2`, `nomor_jkn_anak3`, `nomor_kartu_keluarga`, `nama_ibu`, `nama_ayah`, `status_nikah`, `nik_istri_suami`, `nama_istri_suami`, `tempat_lahir_istri_suami`, `tanggal_lahir_istri_suami`, `nik_anak1`, `nama_anak1`, `tempat_lahir_anak1`, `tanggal_lahir_anak1`, `jenis_kelamin_anak1`, `nik_anak2`, `nama_anak2`, `tempat_lahir_anak2`, `tanggal_lahir_anak2`, `jenis_kelamin_anak2`, `nik_anak3`, `nama_anak3`, `tempat_lahir_anak3`, `tanggal_lahir_anak3`, `jenis_kelamin_anak3`) VALUES
@@ -9037,12 +9040,13 @@ INSERT INTO `karyawan` (`id_karyawan`, `perusahaan_id`, `penempatan_id`, `jabata
 (951, 1, 3, 19, 5, '1810056801020002', 'Nandya Dwi Putri', 'nand@gmail.com', '1111', '', 'default_karyawan.jpg', 'default_ktp.jpg', 'default_npwp.jpg', 'default_kk.jpg', 'Banjar Agung Udik', '2002-01-28', 'Islam', 'Wanita', 'SMA / SMK', '081379786219', 'O', 'Pagelaran I', '001', '001', 'Pagelaran', 'Pagelaran', 'Pringsewu', 'Lampung', '11111', '4205485762', '', '', '', '', '', '', '', '', '', '', '', '2021-11-11', '2022-11-09', 'PKWT', '', '', '', '', '', '', '', '1810051907110088', 'Emmawati', 'Hadis', 'Single', '', '', '', '0000-00-00', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', ''),
 (952, 1, 5, 10, 5, '9999999999999999', 'Yueh Chi Lee', 'lee@gmail.com', '1111', '827401183053000', 'default_karyawan.jpg', 'default_ktp.jpg', 'default_npwp.jpg', 'default_kk.jpg', 'Taipei City', '1983-12-17', 'Kristen Katholik', 'Pria', 'S1', '00000000000000', 'O', 'Perum Persada Sayang', '009', '009', 'Rawa Buaya', 'Cengkareng', 'Jakarta Barat', 'DKI Jakarta', '11111', '9834097564', '', '', '', '', '', '', '', '', '', '', '', '2022-01-03', '2022-03-31', 'PKWT', '0002283624887', '18118720590', '18118720590', '', '', '', '', '3173010103170025', 'Szie Phek Giok', 'Tjio Mong Jaoe', 'Menikah', '', '', '', '0000-00-00', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', ''),
 (953, 1, 26, 8, 5, '3374012501860002', 'Adam Triadimas', 'adam@gmail.com', '1111', '872623269509000', 'default_karyawan.jpg', 'default_ktp.jpg', 'default_npwp.jpg', 'default_kk.jpg', 'Semarang', '1986-01-25', 'Kristen Katholik', 'Pria', 'S1', '081331070108', 'O', 'Jl.Plampitan No.66', '003', '005', 'Kranggan', 'Semarang Tengah', 'Semarang', 'Jawa Tengah', '11111', '11111111111111111', '', '', '', '', '', '', '', '', '', '', '', '2022-01-03', '2022-03-31', 'PKWT', '', '', '', '', '', '', '', '3374012210150003', 'Tetty Sulandreni', 'Soegianto Soetedjo', 'Single', '', '', '', '0000-00-00', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', ''),
-(954, 1, 7, 19, 5, '1806115805010002', 'Karmila Wahyuni', 'karmila@gmail.com', '1111', '918729930325000', 'default_karyawan.jpg', 'default_ktp.jpg', 'default_npwp.jpg', 'default_kk.jpg', 'Kebumen', '2001-05-18', 'Islam', 'Pria', 'SMA / SMK', '082258839528', 'O', 'Dusun Kebumen', '000', '000', 'Banjar Agung Udik', 'Pugung', 'Tanggamus', 'Lampung', '11111', '4205489075', '', '', '', '', '', '', '', '', '', '', '', '2022-01-25', '2023-01-24', 'PKWT', '', '', '', '', '', '', '', '1806110204082087', 'Saminah', 'Kartiwan', 'Single', '', '', '', '0000-00-00', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '');
+(954, 1, 7, 19, 5, '1806115805010002', 'Karmila Wahyuni', 'karmila@gmail.com', '1111', '918729930325000', 'default_karyawan.jpg', 'default_ktp.jpg', 'default_npwp.jpg', 'default_kk.jpg', 'Kebumen', '2001-05-18', 'Islam', 'Pria', 'SMA / SMK', '082258839528', 'O', 'Dusun Kebumen', '000', '000', 'Banjar Agung Udik', 'Pugung', 'Tanggamus', 'Lampung', '11111', '4205489075', '', '', '', '', '', '', '', '', '', '', '', '2022-01-25', '2023-01-24', 'PKWT', '', '', '', '', '', '', '', '1806110204082087', 'Saminah', 'Kartiwan', 'Single', '', '', '', '0000-00-00', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', ''),
+(955, 1, 1, 2, 5, '1212121212121212', 'riza', 'rizapahlevi180@gmail.com', '1212', '121212121212121', 'default_karyawan.jpg', 'default_ktp.jpg', 'default_npwp.jpg', 'default_kk.jpg', 'Medan', '2024-09-09', 'Islam', 'Pria', 'SD', '082361168209', 'B', 'Phone Cell', '209', '122', 'Medan Area', 'Medan Area', 'Medan', 'Sumatera Utara', '20371', '1812121212', '', '', '', '', '', '', '', '', '', '', '', '2024-09-09', '2024-09-11', 'PKWT', '1212121212121', '12121212121', '12121212121', '', '', '', '', '1221212121212121', 'Nikah', 'Ayo', 'Single', '', '', '', '0000-00-00', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '', '', '', '', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `karyawan_keluar`
+-- Struktur dari tabel `karyawan_keluar`
 --
 
 CREATE TABLE `karyawan_keluar` (
@@ -9085,7 +9089,7 @@ CREATE TABLE `karyawan_keluar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `karyawan_keluar`
+-- Dumping data untuk tabel `karyawan_keluar`
 --
 
 INSERT INTO `karyawan_keluar` (`id_karyawan_keluar`, `nik_karyawan_keluar`, `nomor_npwp_karyawan_keluar`, `nama_karyawan_keluar`, `email_karyawan_keluar`, `nomor_handphone_karyawan_keluar`, `tempat_lahir_karyawan_keluar`, `tanggal_lahir_karyawan_keluar`, `nomor_jht_karyawan_keluar`, `nomor_jp_karyawan_keluar`, `nomor_jkn_karyawan_keluar`, `nomor_rekening_karyawan_keluar`, `perusahaan_id`, `penempatan_id`, `jabatan_id`, `pendidikan_terakhir_karyawan_keluar`, `jenis_kelamin_karyawan_keluar`, `agama_karyawan_keluar`, `alamat_karyawan_keluar`, `rt_karyawan_keluar`, `rw_karyawan_keluar`, `kelurahan_karyawan_keluar`, `kecamatan_karyawan_keluar`, `kota_karyawan_keluar`, `provinsi_karyawan_keluar`, `kode_pos_karyawan_keluar`, `tanggal_masuk_karyawan_keluar`, `tanggal_keluar_karyawan_keluar`, `status_kerja_karyawan_keluar`, `keterangan_keluar`, `nomor_absen_karyawan_keluar`, `golongan_darah_karyawan_keluar`, `nomor_kartu_keluarga_karyawan_keluar`, `status_nikah_karyawan_keluar`, `nama_ayah_karyawan_keluar`, `nama_ibu_karyawan_keluar`) VALUES
@@ -9961,7 +9965,7 @@ INSERT INTO `karyawan_keluar` (`id_karyawan_keluar`, `nik_karyawan_keluar`, `nom
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keterangan_lembur`
+-- Struktur dari tabel `keterangan_lembur`
 --
 
 CREATE TABLE `keterangan_lembur` (
@@ -9970,7 +9974,7 @@ CREATE TABLE `keterangan_lembur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `keterangan_lembur`
+-- Dumping data untuk tabel `keterangan_lembur`
 --
 
 INSERT INTO `keterangan_lembur` (`id_keterangan_lembur`, `keterangan_lembur`) VALUES
@@ -9982,7 +9986,7 @@ INSERT INTO `keterangan_lembur` (`id_keterangan_lembur`, `keterangan_lembur`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login`
+-- Struktur dari tabel `login`
 --
 
 CREATE TABLE `login` (
@@ -9998,7 +10002,7 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `login`
+-- Dumping data untuk tabel `login`
 --
 
 INSERT INTO `login` (`id`, `nik`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
@@ -10010,7 +10014,7 @@ INSERT INTO `login` (`id`, `nik`, `name`, `email`, `image`, `password`, `role_id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login_role`
+-- Struktur dari tabel `login_role`
 --
 
 CREATE TABLE `login_role` (
@@ -10019,7 +10023,7 @@ CREATE TABLE `login_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `login_role`
+-- Dumping data untuk tabel `login_role`
 --
 
 INSERT INTO `login_role` (`id`, `role`) VALUES
@@ -10041,7 +10045,7 @@ INSERT INTO `login_role` (`id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login_token`
+-- Struktur dari tabel `login_token`
 --
 
 CREATE TABLE `login_token` (
@@ -10052,7 +10056,7 @@ CREATE TABLE `login_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `login_token`
+-- Dumping data untuk tabel `login_token`
 --
 
 INSERT INTO `login_token` (`id`, `email`, `token`, `date_created`) VALUES
@@ -10077,7 +10081,7 @@ INSERT INTO `login_token` (`id`, `email`, `token`, `date_created`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `magang`
+-- Struktur dari tabel `magang`
 --
 
 CREATE TABLE `magang` (
@@ -10105,7 +10109,7 @@ CREATE TABLE `magang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `magang`
+-- Dumping data untuk tabel `magang`
 --
 
 INSERT INTO `magang` (`id_magang`, `penempatan_id`, `jabatan_id`, `tanggal_masuk_magang`, `tanggal_selesai_magang`, `nik_magang`, `nama_magang`, `tempat_lahir_magang`, `tanggal_lahir_magang`, `agama_magang`, `jenis_kelamin_magang`, `nomor_handphone_magang`, `pendidikan_terakhir_magang`, `alamat_magang`, `rt_magang`, `rw_magang`, `kelurahan_magang`, `kecamatan_magang`, `kota_magang`, `provinsi_magang`, `kode_pos_magang`) VALUES
@@ -13081,7 +13085,7 @@ INSERT INTO `magang` (`id_magang`, `penempatan_id`, `jabatan_id`, `tanggal_masuk
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penempatan`
+-- Struktur dari tabel `penempatan`
 --
 
 CREATE TABLE `penempatan` (
@@ -13090,7 +13094,7 @@ CREATE TABLE `penempatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `penempatan`
+-- Dumping data untuk tabel `penempatan`
 --
 
 INSERT INTO `penempatan` (`id`, `penempatan`) VALUES
@@ -13123,7 +13127,7 @@ INSERT INTO `penempatan` (`id`, `penempatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `perusahaan`
+-- Struktur dari tabel `perusahaan`
 --
 
 CREATE TABLE `perusahaan` (
@@ -13132,7 +13136,7 @@ CREATE TABLE `perusahaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `perusahaan`
+-- Dumping data untuk tabel `perusahaan`
 --
 
 INSERT INTO `perusahaan` (`id`, `perusahaan`) VALUES
@@ -13142,7 +13146,7 @@ INSERT INTO `perusahaan` (`id`, `perusahaan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `potongan_bpjs_kesehatan`
+-- Struktur dari tabel `potongan_bpjs_kesehatan`
 --
 
 CREATE TABLE `potongan_bpjs_kesehatan` (
@@ -13153,7 +13157,7 @@ CREATE TABLE `potongan_bpjs_kesehatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `potongan_bpjs_kesehatan`
+-- Dumping data untuk tabel `potongan_bpjs_kesehatan`
 --
 
 INSERT INTO `potongan_bpjs_kesehatan` (`id_potongan_bpjs_kesehatan`, `potongan_bpjs_kesehatan_karyawan`, `potongan_bpjs_kesehatan_perusahaan`, `maksimal_iuran_bpjs_kesehatan`) VALUES
@@ -13162,7 +13166,7 @@ INSERT INTO `potongan_bpjs_kesehatan` (`id_potongan_bpjs_kesehatan`, `potongan_b
 -- --------------------------------------------------------
 
 --
--- Table structure for table `potongan_bpjs_ketenagakerjaan`
+-- Struktur dari tabel `potongan_bpjs_ketenagakerjaan`
 --
 
 CREATE TABLE `potongan_bpjs_ketenagakerjaan` (
@@ -13179,7 +13183,7 @@ CREATE TABLE `potongan_bpjs_ketenagakerjaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `potongan_bpjs_ketenagakerjaan`
+-- Dumping data untuk tabel `potongan_bpjs_ketenagakerjaan`
 --
 
 INSERT INTO `potongan_bpjs_ketenagakerjaan` (`id_potongan_bpjs_ketenagakerjaan`, `potongan_jht_karyawan`, `potongan_jht_perusahaan`, `potongan_jp_karyawan`, `potongan_jp_perusahaan`, `potongan_jkk_perusahaan`, `potongan_jkm_perusahaan`, `jumlah_potongan_karyawan`, `jumlah_potongan_perusahaan`, `maksimal_iuran_jp`) VALUES
@@ -13188,7 +13192,7 @@ INSERT INTO `potongan_bpjs_ketenagakerjaan` (`id_potongan_bpjs_ketenagakerjaan`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sekolah`
+-- Struktur dari tabel `sekolah`
 --
 
 CREATE TABLE `sekolah` (
@@ -13204,7 +13208,7 @@ CREATE TABLE `sekolah` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `siswa`
+-- Struktur dari tabel `siswa`
 --
 
 CREATE TABLE `siswa` (
@@ -13227,7 +13231,7 @@ CREATE TABLE `siswa` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `slip_lembur`
+-- Struktur dari tabel `slip_lembur`
 --
 
 CREATE TABLE `slip_lembur` (
@@ -13258,7 +13262,7 @@ CREATE TABLE `slip_lembur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `slip_lembur`
+-- Dumping data untuk tabel `slip_lembur`
 --
 
 INSERT INTO `slip_lembur` (`id_slip_lembur`, `jam_lembur_id`, `keterangan_lembur_id`, `karyawan_id`, `tanggal_lembur`, `jenis_lembur`, `jam_lembur`, `jam_pertama`, `jumlah_jam_pertama`, `jam_kedua`, `jumlah_jam_kedua`, `jam_ketiga`, `jumlah_jam_ketiga`, `jam_keempat`, `jumlah_jam_keempat`, `uang_makan_lembur`, `input_oleh`, `waktu_input`, `acc_supervisor`, `waktu_acc_supervisor`, `acc_manager`, `waktu_acc_manager`, `acc_hrd`, `waktu_acc_hrd`) VALUES
@@ -13268,7 +13272,41 @@ INSERT INTO `slip_lembur` (`id_slip_lembur`, `jam_lembur_id`, `keterangan_lembur
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_access_menu`
+-- Struktur dari tabel `upah_karyawan`
+--
+
+CREATE TABLE `upah_karyawan` (
+  `id` int(11) NOT NULL,
+  `nama_karyawan` varchar(255) NOT NULL,
+  `uang_kehadiran` decimal(15,2) DEFAULT 0.00,
+  `tunjangan_jabatan` decimal(15,2) DEFAULT 0.00,
+  `tunjangan_transportasi` decimal(15,2) DEFAULT 0.00,
+  `tunjangan_pot` decimal(15,2) DEFAULT 0.00,
+  `tunjangan_komunikasi` decimal(15,2) DEFAULT 0.00,
+  `tunjangan_lain_lain` decimal(15,2) DEFAULT 0.00,
+  `insentif_libur_bersama` decimal(15,2) DEFAULT 0.00,
+  `insentif_libur_perusahaan` decimal(15,2) DEFAULT 0.00,
+  `ritase` decimal(15,2) DEFAULT 0.00,
+  `dinas` decimal(15,2) DEFAULT 0.00,
+  `rapelan` decimal(15,2) DEFAULT 0.00,
+  `lain_lain` decimal(15,2) DEFAULT 0.00,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `upah_karyawan`
+--
+
+INSERT INTO `upah_karyawan` (`id`, `nama_karyawan`, `uang_kehadiran`, `tunjangan_jabatan`, `tunjangan_transportasi`, `tunjangan_pot`, `tunjangan_komunikasi`, `tunjangan_lain_lain`, `insentif_libur_bersama`, `insentif_libur_perusahaan`, `ritase`, `dinas`, `rapelan`, `lain_lain`, `created_at`, `updated_at`) VALUES
+(1, 'Riza', 100000.00, 100000.00, 100000.00, 100000.00, 100000.00, 100000.00, 100000.00, 100000.00, 100000.00, 100000.00, 100000.00, 100000.00, '2024-09-09 02:52:00', '2024-09-09 02:52:00'),
+(2, 'riza', 100000000.00, 100000000.00, 100000000.00, 100000000.00, 100000000.00, 100000000.00, 100000000.00, 100000000.00, 100000000.00, 100000000.00, 100000000.00, 100000000.00, '2024-09-09 04:53:50', '2024-09-09 04:53:50'),
+(3, 'Tarigan', 10000.00, 10000.00, 10000.00, 10000.00, 10000.00, 10000.00, 10000.00, 10000.00, 10000.00, 10000.00, 10000.00, 10000.00, '2024-09-09 04:54:57', '2024-09-09 04:54:57');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_access_menu`
 --
 
 CREATE TABLE `user_access_menu` (
@@ -13278,7 +13316,7 @@ CREATE TABLE `user_access_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `user_access_menu`
+-- Dumping data untuk tabel `user_access_menu`
 --
 
 INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
@@ -13442,12 +13480,13 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (205, 10, 12),
 (206, 10, 3),
 (207, 10, 15),
-(208, 10, 16);
+(208, 10, 16),
+(209, 1, 19);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_menu`
+-- Struktur dari tabel `user_menu`
 --
 
 CREATE TABLE `user_menu` (
@@ -13456,7 +13495,7 @@ CREATE TABLE `user_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `user_menu`
+-- Dumping data untuk tabel `user_menu`
 --
 
 INSERT INTO `user_menu` (`id`, `menu`) VALUES
@@ -13477,12 +13516,13 @@ INSERT INTO `user_menu` (`id`, `menu`) VALUES
 (15, 'CetakLembur'),
 (16, 'Surat'),
 (17, 'Laporan'),
-(18, 'History');
+(18, 'History'),
+(19, 'Upah');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_sub_menu`
+-- Struktur dari tabel `user_sub_menu`
 --
 
 CREATE TABLE `user_sub_menu` (
@@ -13495,7 +13535,7 @@ CREATE TABLE `user_sub_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `user_sub_menu`
+-- Dumping data untuk tabel `user_sub_menu`
 --
 
 INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
@@ -13558,204 +13598,205 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (67, 4, 'Iuran BPJSKS', 'master/bpjskesehatan', 'fas fa-fw fa-hand-holding-usd', 1),
 (68, 4, 'Iuran BPJSTK', 'master/bpjsketenagakerjaan', 'fas fa-fw fa-hand-holding-usd', 1),
 (69, 17, 'Absensi Bulanan', 'laporan/kpiabsensi', 'fas fa-fw fa-paste', 1),
-(70, 16, 'Surat Magang', 'surat/suratmagang', 'fas fa-fw fa-folder', 1);
+(70, 16, 'Surat Magang', 'surat/suratmagang', 'fas fa-fw fa-folder', 1),
+(72, 19, 'Upah', 'upah/karyawan', 'fas fa-fw fa-tachometer-alt', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `absensi`
+-- Indeks untuk tabel `absensi`
 --
 ALTER TABLE `absensi`
   ADD PRIMARY KEY (`id_absen`),
   ADD KEY `kd_karyawan` (`nik_karyawan_absen`);
 
 --
--- Indexes for table `absensi_2018`
+-- Indeks untuk tabel `absensi_2018`
 --
 ALTER TABLE `absensi_2018`
   ADD PRIMARY KEY (`id_absen`),
   ADD KEY `kd_karyawan` (`nik_karyawan_absen`);
 
 --
--- Indexes for table `absensi_2020`
+-- Indeks untuk tabel `absensi_2020`
 --
 ALTER TABLE `absensi_2020`
   ADD PRIMARY KEY (`id_absen`),
   ADD KEY `kd_karyawan` (`nik_karyawan_absen`);
 
 --
--- Indexes for table `gaji_master`
+-- Indeks untuk tabel `gaji_master`
 --
 ALTER TABLE `gaji_master`
   ADD PRIMARY KEY (`id_gaji_master`);
 
 --
--- Indexes for table `history_gaji`
+-- Indeks untuk tabel `history_gaji`
 --
 ALTER TABLE `history_gaji`
   ADD PRIMARY KEY (`id_history_gaji`);
 
 --
--- Indexes for table `history_jabatan`
+-- Indeks untuk tabel `history_jabatan`
 --
 ALTER TABLE `history_jabatan`
   ADD PRIMARY KEY (`id_history_jabatan`);
 
 --
--- Indexes for table `history_keluarga`
+-- Indeks untuk tabel `history_keluarga`
 --
 ALTER TABLE `history_keluarga`
   ADD PRIMARY KEY (`id_history_keluarga`);
 
 --
--- Indexes for table `history_kontrak`
+-- Indeks untuk tabel `history_kontrak`
 --
 ALTER TABLE `history_kontrak`
   ADD PRIMARY KEY (`id_history_kontrak`);
 
 --
--- Indexes for table `history_pendidikan_formal`
+-- Indeks untuk tabel `history_pendidikan_formal`
 --
 ALTER TABLE `history_pendidikan_formal`
   ADD PRIMARY KEY (`id_history_pendidikan_formal`);
 
 --
--- Indexes for table `history_pendidikan_non_formal`
+-- Indeks untuk tabel `history_pendidikan_non_formal`
 --
 ALTER TABLE `history_pendidikan_non_formal`
   ADD PRIMARY KEY (`id_history_pendidikan_non_formal`);
 
 --
--- Indexes for table `history_training_eksternal`
+-- Indeks untuk tabel `history_training_eksternal`
 --
 ALTER TABLE `history_training_eksternal`
   ADD PRIMARY KEY (`id_history_training_eksternal`);
 
 --
--- Indexes for table `history_training_internal`
+-- Indeks untuk tabel `history_training_internal`
 --
 ALTER TABLE `history_training_internal`
   ADD PRIMARY KEY (`id_history_training_internal`);
 
 --
--- Indexes for table `inventaris_laptop`
+-- Indeks untuk tabel `inventaris_laptop`
 --
 ALTER TABLE `inventaris_laptop`
   ADD PRIMARY KEY (`id_inventaris_laptop`);
 
 --
--- Indexes for table `inventaris_mobil`
+-- Indeks untuk tabel `inventaris_mobil`
 --
 ALTER TABLE `inventaris_mobil`
   ADD PRIMARY KEY (`id_inventaris_mobil`);
 
 --
--- Indexes for table `inventaris_motor`
+-- Indeks untuk tabel `inventaris_motor`
 --
 ALTER TABLE `inventaris_motor`
   ADD PRIMARY KEY (`id_inventaris_motor`);
 
 --
--- Indexes for table `jabatan`
+-- Indeks untuk tabel `jabatan`
 --
 ALTER TABLE `jabatan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jam_kerja`
+-- Indeks untuk tabel `jam_kerja`
 --
 ALTER TABLE `jam_kerja`
   ADD PRIMARY KEY (`id_jam_kerja`);
 
 --
--- Indexes for table `jam_lembur`
+-- Indeks untuk tabel `jam_lembur`
 --
 ALTER TABLE `jam_lembur`
   ADD PRIMARY KEY (`id_jam_lembur`);
 
 --
--- Indexes for table `karyawan`
+-- Indeks untuk tabel `karyawan`
 --
 ALTER TABLE `karyawan`
   ADD PRIMARY KEY (`id_karyawan`),
   ADD KEY `nik_karyawan` (`nik_karyawan`);
 
 --
--- Indexes for table `karyawan_keluar`
+-- Indeks untuk tabel `karyawan_keluar`
 --
 ALTER TABLE `karyawan_keluar`
   ADD PRIMARY KEY (`id_karyawan_keluar`);
 
 --
--- Indexes for table `keterangan_lembur`
+-- Indeks untuk tabel `keterangan_lembur`
 --
 ALTER TABLE `keterangan_lembur`
   ADD PRIMARY KEY (`id_keterangan_lembur`);
 
 --
--- Indexes for table `login`
+-- Indeks untuk tabel `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `login_role`
+-- Indeks untuk tabel `login_role`
 --
 ALTER TABLE `login_role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `login_token`
+-- Indeks untuk tabel `login_token`
 --
 ALTER TABLE `login_token`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `magang`
+-- Indeks untuk tabel `magang`
 --
 ALTER TABLE `magang`
   ADD PRIMARY KEY (`id_magang`);
 
 --
--- Indexes for table `penempatan`
+-- Indeks untuk tabel `penempatan`
 --
 ALTER TABLE `penempatan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `perusahaan`
+-- Indeks untuk tabel `perusahaan`
 --
 ALTER TABLE `perusahaan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `potongan_bpjs_kesehatan`
+-- Indeks untuk tabel `potongan_bpjs_kesehatan`
 --
 ALTER TABLE `potongan_bpjs_kesehatan`
   ADD PRIMARY KEY (`id_potongan_bpjs_kesehatan`);
 
 --
--- Indexes for table `potongan_bpjs_ketenagakerjaan`
+-- Indeks untuk tabel `potongan_bpjs_ketenagakerjaan`
 --
 ALTER TABLE `potongan_bpjs_ketenagakerjaan`
   ADD PRIMARY KEY (`id_potongan_bpjs_ketenagakerjaan`);
 
 --
--- Indexes for table `sekolah`
+-- Indeks untuk tabel `sekolah`
 --
 ALTER TABLE `sekolah`
   ADD PRIMARY KEY (`id_sekolah`);
 
 --
--- Indexes for table `siswa`
+-- Indeks untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
   ADD PRIMARY KEY (`id_siswa`);
 
 --
--- Indexes for table `slip_lembur`
+-- Indeks untuk tabel `slip_lembur`
 --
 ALTER TABLE `slip_lembur`
   ADD PRIMARY KEY (`id_slip_lembur`),
@@ -13764,236 +13805,248 @@ ALTER TABLE `slip_lembur`
   ADD KEY `jam_lembur_id` (`jam_lembur_id`);
 
 --
--- Indexes for table `user_access_menu`
+-- Indeks untuk tabel `upah_karyawan`
+--
+ALTER TABLE `upah_karyawan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_menu`
+-- Indeks untuk tabel `user_menu`
 --
 ALTER TABLE `user_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_sub_menu`
+-- Indeks untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `absensi`
+-- AUTO_INCREMENT untuk tabel `absensi`
 --
 ALTER TABLE `absensi`
   MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9521;
 
 --
--- AUTO_INCREMENT for table `absensi_2018`
+-- AUTO_INCREMENT untuk tabel `absensi_2018`
 --
 ALTER TABLE `absensi_2018`
   MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6333;
 
 --
--- AUTO_INCREMENT for table `absensi_2020`
+-- AUTO_INCREMENT untuk tabel `absensi_2020`
 --
 ALTER TABLE `absensi_2020`
   MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `gaji_master`
+-- AUTO_INCREMENT untuk tabel `gaji_master`
 --
 ALTER TABLE `gaji_master`
-  MODIFY `id_gaji_master` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=577;
+  MODIFY `id_gaji_master` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=578;
 
 --
--- AUTO_INCREMENT for table `history_gaji`
+-- AUTO_INCREMENT untuk tabel `history_gaji`
 --
 ALTER TABLE `history_gaji`
   MODIFY `id_history_gaji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1987;
 
 --
--- AUTO_INCREMENT for table `history_jabatan`
+-- AUTO_INCREMENT untuk tabel `history_jabatan`
 --
 ALTER TABLE `history_jabatan`
-  MODIFY `id_history_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=582;
+  MODIFY `id_history_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=583;
 
 --
--- AUTO_INCREMENT for table `history_keluarga`
+-- AUTO_INCREMENT untuk tabel `history_keluarga`
 --
 ALTER TABLE `history_keluarga`
   MODIFY `id_history_keluarga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=508;
 
 --
--- AUTO_INCREMENT for table `history_kontrak`
+-- AUTO_INCREMENT untuk tabel `history_kontrak`
 --
 ALTER TABLE `history_kontrak`
-  MODIFY `id_history_kontrak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3168;
+  MODIFY `id_history_kontrak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3169;
 
 --
--- AUTO_INCREMENT for table `history_pendidikan_formal`
+-- AUTO_INCREMENT untuk tabel `history_pendidikan_formal`
 --
 ALTER TABLE `history_pendidikan_formal`
   MODIFY `id_history_pendidikan_formal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `history_pendidikan_non_formal`
+-- AUTO_INCREMENT untuk tabel `history_pendidikan_non_formal`
 --
 ALTER TABLE `history_pendidikan_non_formal`
   MODIFY `id_history_pendidikan_non_formal` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `history_training_eksternal`
+-- AUTO_INCREMENT untuk tabel `history_training_eksternal`
 --
 ALTER TABLE `history_training_eksternal`
   MODIFY `id_history_training_eksternal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `history_training_internal`
+-- AUTO_INCREMENT untuk tabel `history_training_internal`
 --
 ALTER TABLE `history_training_internal`
   MODIFY `id_history_training_internal` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `inventaris_laptop`
+-- AUTO_INCREMENT untuk tabel `inventaris_laptop`
 --
 ALTER TABLE `inventaris_laptop`
   MODIFY `id_inventaris_laptop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
--- AUTO_INCREMENT for table `inventaris_mobil`
+-- AUTO_INCREMENT untuk tabel `inventaris_mobil`
 --
 ALTER TABLE `inventaris_mobil`
   MODIFY `id_inventaris_mobil` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `inventaris_motor`
+-- AUTO_INCREMENT untuk tabel `inventaris_motor`
 --
 ALTER TABLE `inventaris_motor`
   MODIFY `id_inventaris_motor` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `jabatan`
+-- AUTO_INCREMENT untuk tabel `jabatan`
 --
 ALTER TABLE `jabatan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- AUTO_INCREMENT for table `jam_kerja`
+-- AUTO_INCREMENT untuk tabel `jam_kerja`
 --
 ALTER TABLE `jam_kerja`
   MODIFY `id_jam_kerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `jam_lembur`
+-- AUTO_INCREMENT untuk tabel `jam_lembur`
 --
 ALTER TABLE `jam_lembur`
   MODIFY `id_jam_lembur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `karyawan`
+-- AUTO_INCREMENT untuk tabel `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=955;
+  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=956;
 
 --
--- AUTO_INCREMENT for table `karyawan_keluar`
+-- AUTO_INCREMENT untuk tabel `karyawan_keluar`
 --
 ALTER TABLE `karyawan_keluar`
   MODIFY `id_karyawan_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=872;
 
 --
--- AUTO_INCREMENT for table `keterangan_lembur`
+-- AUTO_INCREMENT untuk tabel `keterangan_lembur`
 --
 ALTER TABLE `keterangan_lembur`
   MODIFY `id_keterangan_lembur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `login`
+-- AUTO_INCREMENT untuk tabel `login`
 --
 ALTER TABLE `login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `login_role`
+-- AUTO_INCREMENT untuk tabel `login_role`
 --
 ALTER TABLE `login_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `login_token`
+-- AUTO_INCREMENT untuk tabel `login_token`
 --
 ALTER TABLE `login_token`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `magang`
+-- AUTO_INCREMENT untuk tabel `magang`
 --
 ALTER TABLE `magang`
   MODIFY `id_magang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3023;
 
 --
--- AUTO_INCREMENT for table `penempatan`
+-- AUTO_INCREMENT untuk tabel `penempatan`
 --
 ALTER TABLE `penempatan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `perusahaan`
+-- AUTO_INCREMENT untuk tabel `perusahaan`
 --
 ALTER TABLE `perusahaan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `potongan_bpjs_kesehatan`
+-- AUTO_INCREMENT untuk tabel `potongan_bpjs_kesehatan`
 --
 ALTER TABLE `potongan_bpjs_kesehatan`
   MODIFY `id_potongan_bpjs_kesehatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `potongan_bpjs_ketenagakerjaan`
+-- AUTO_INCREMENT untuk tabel `potongan_bpjs_ketenagakerjaan`
 --
 ALTER TABLE `potongan_bpjs_ketenagakerjaan`
   MODIFY `id_potongan_bpjs_ketenagakerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `sekolah`
+-- AUTO_INCREMENT untuk tabel `sekolah`
 --
 ALTER TABLE `sekolah`
   MODIFY `id_sekolah` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `siswa`
+-- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
   MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `slip_lembur`
+-- AUTO_INCREMENT untuk tabel `slip_lembur`
 --
 ALTER TABLE `slip_lembur`
   MODIFY `id_slip_lembur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `user_access_menu`
+-- AUTO_INCREMENT untuk tabel `upah_karyawan`
+--
+ALTER TABLE `upah_karyawan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
 
 --
--- AUTO_INCREMENT for table `user_menu`
+-- AUTO_INCREMENT untuk tabel `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `user_sub_menu`
+-- AUTO_INCREMENT untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

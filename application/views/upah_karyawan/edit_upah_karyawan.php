@@ -13,16 +13,10 @@
     <?= $this->session->flashdata('message'); ?>
 
     <!-- Tabs -->
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <!-- Add tab items as needed -->
-        <li class="nav-item">
-            <a class="nav-link active" id="gaji-tab" data-toggle="tab" href="#gaji" role="tab" aria-controls="gaji" aria-selected="true">Gaji</a>
-        </li>
-        <!-- Other tabs here -->
-    </ul>
+   
 
     <!-- Form -->
-    <?= form_open('upah/tambahupahkaryawan'); ?>
+    <?= form_open('upah/editupahkaryawan/' . $upah['id']); ?>
         <!-- Tab Gaji -->
         <div class="tab-pane fade show active" id="gaji" role="tabpanel" aria-labelledby="gaji-tab">
             <div class="card border-success">

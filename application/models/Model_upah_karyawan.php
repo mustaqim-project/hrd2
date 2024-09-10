@@ -8,6 +8,10 @@ class Model_upah_karyawan extends CI_model
         $query = $this->db->get('perusahaan')->result_array();
         return $query;
     }
+    public function getAllUpah()
+    {
+        return $this->db->get('upah_karyawan')->result_array(); // Fetch all records from 'upah_karyawan'
+    }
 
     //mengambil semua data penempatan
     public function getAllPenempatan()
@@ -23,6 +27,39 @@ class Model_upah_karyawan extends CI_model
     public function tambahUpahKaryawan($data) {
         return $this->db->insert('upah_karyawan', $data);
     }
+        public function getUpahKaryawanById($id)
+    {
+        return $this->db->get_where('upah_karyawan', ['id' => $id])->row_array();
+    }
+    public function getklaim($id)
+    {
+        $query = $this->db->get('upah_karyawan')->result_array();
+        return $query;
+    }
+
+    public function updateUpahKaryawan($id)
+    {
+        // Mengambil data dari input form
+        $data = [
+            'nama_karyawan'             => htmlspecialchars($this->input->post('nama_karyawan', true)),
+            'uang_kehadiran'            => $this->input->post('uang_kehadiran', true),
+            'tunjangan_jabatan'         => $this->input->post('tunjangan_jabatan', true),
+            'tunjangan_transportasi'    => $this->input->post('tunjangan_transportasi', true),
+            'tunjangan_pot'             => $this->input->post('tunjangan_pot', true),
+            'tunjangan_komunikasi'      => $this->input->post('tunjangan_komunikasi', true),
+            'tunjangan_lain_lain'       => $this->input->post('tunjangan_lain_lain', true),
+            'insentif_libur_bersama'    => $this->input->post('insentif_libur_bersama', true),
+            'insentif_libur_perusahaan' => $this->input->post('insentif_libur_perusahaan', true),
+            'ritase'                    => $this->input->post('ritase', true),
+            'dinas'                     => $this->input->post('dinas', true),
+            'rapelan'                   => $this->input->post('rapelan', true),
+            'lain_lain'                 => $this->input->post('lain_lain', true),
+        ];
+
+        // Update data ke database berdasarkan ID
+        $this->db->where('id', $id);
+        $this->db->update('upah_karyawan', $data);
+    }
     public function getUpah2($id)
     {
         // Fetch specific employee's data based on id
@@ -30,15 +67,18 @@ class Model_upah_karyawan extends CI_model
         $query = $this->db->get('upah_karyawan');
         return $query->row_array(); // Return only one row (the employee's data)
     }
-
-
     //mengambil semua data jabatan
     public function getAllJabatan()
     {
         $query = $this->db->get('jabatan')->result_array();
         return $query;
     }
-
+    public function hapusUpahKaryawan($id)
+    {
+        // Delete the employee data from 'upah_karyawan' table
+        $this->db->where('id', $id);
+        return $this->db->delete('upah_karyawan');
+    }
     //mengambil semua data jam kerja
     public function getAllJamKerja()
     {
