@@ -128,7 +128,7 @@ class Home extends CI_Controller
 		// Ambil data grafik kehadiran dan payroll berdasarkan periode
 		$data['grafik_kehadiran'] = $this->chart->getGrafikKehadiran($periode);
 		$data['grafik_payroll'] = $this->chart->getPayrollPembayaran($periode);
-		$data['periode'] = $periode; // Kirim periode kembali ke view untuk dipilih secara default
+		$data['periode'] = $periode; 
 	
 		$data['status_nikah'] = $this->db->select('status_nikah, COUNT(*) as jumlah')
 		->from('karyawan')

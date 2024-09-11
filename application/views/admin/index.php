@@ -114,7 +114,6 @@
 	</div>
 	<!-- row -->
 
-
 	<form method="get" action="<?= base_url('home/index') ?>">
 		<div class="form-group">
 			<label for="periode">Pilih Periode:</label>
@@ -126,6 +125,7 @@
 		</div>
 		<button type="submit" class="btn btn-primary">Tampilkan</button>
 	</form>
+
 
 	<div class="card">
 		<div class="card-header">
