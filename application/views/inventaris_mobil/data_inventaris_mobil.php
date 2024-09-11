@@ -30,7 +30,7 @@
                     <i class="fas fa-download"></i>
                     Import Data Karyawan
                 </a>
-                <a href="<?= base_url('karyawan/download_template'); ?>" class="btn btn-success mb-2 ml-4">
+                <a href="<?= base_url('inventaris/download_template_mobil'); ?>" class="btn btn-success mb-2 ml-4">
                     <i class="fas fa-download"></i>
                     Download Template Excel
                 </a>

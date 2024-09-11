@@ -38,6 +38,22 @@ class Inventaris extends CI_Controller
         $this->load->view('inventaris_laptop/data_inventaris_laptop', $data);
         $this->load->view('templates/footer');
     }
+    public function download_template_laptop() {
+		$this->load->helper('download');
+		$file_path = './uploads/inventaris_laptop.xlsx';
+		force_download($file_path, NULL);
+	}
+    public function download_template_motor() {
+		$this->load->helper('download');
+		$file_path = './uploads/inventaris_motor.xlsx';
+		force_download($file_path, NULL);
+	}
+    public function download_template_mobil() {
+		$this->load->helper('download');
+		$file_path = './uploads/inventaris_motor.xlsx';
+		force_download($file_path, NULL);
+	}
+
 
     //untuk mencari data karyawan berdasarkan NIK Karyawan
     public function get_datakaryawan()

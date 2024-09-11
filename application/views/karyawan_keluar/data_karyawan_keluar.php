@@ -49,6 +49,10 @@
                     <i class="fas fa-plus"></i>
                     Tambah Data Karyawan Keluar
                 </a>
+                <a href="<?= base_url('karyawankeluar/download_template_keluar'); ?>" class="btn btn-success mb-2 ml-4">
+                    <i class="fas fa-download"></i>
+                    Download Template Excel
+                </a>
                 <!-- Jika Yang Login adalah Bukan HRD Maka Button Tambah Tidak Tampil -->
             <?php else : ?>
             <?php endif; ?>

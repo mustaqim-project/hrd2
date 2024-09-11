@@ -31,6 +31,11 @@ class KaryawanKeluar extends CI_Controller
         $this->load->view('karyawan_keluar/data_karyawan_keluar', $data);
         $this->load->view('templates/footer');
     }
+    public function download_template_keluar() {
+		$this->load->helper('download');
+		$file_path = './uploads/karyawan_keluar.xlsx';
+		force_download($file_path, NULL);
+	}
 
     //untuk mencari data karyawan berdasarkan NIK Karyawan
     public function get_datakaryawan()

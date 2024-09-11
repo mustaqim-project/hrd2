@@ -17,6 +17,11 @@ class Lembur extends CI_Controller
         //Memanggil model lembur
         $this->load->model('Lembur/Lembur_model', 'lembur');
     }
+    public function download_template_lembur() {
+		$this->load->helper('download');
+		$file_path = './uploads/jam_lembur.xlsx';
+		force_download($file_path, NULL);
+	}
 
     //Menampilkan halaman awal data lembur 
     public function datalembur()

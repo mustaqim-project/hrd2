@@ -44,6 +44,10 @@
                     <i class="fas fa-plus"></i>
                     Tambah Data Lembur
                 </a>
+                <a href="<?= base_url('lembur/download_template_lembur'); ?>" class="btn btn-success mb-2 ml-4">
+                    <i class="fas fa-download"></i>
+                    Download Template Excel
+                </a>
                 <!-- Jika tidak, maka form tambah tidak akan tampil -->
             <?php else : ?>
             <?php endif; ?>
