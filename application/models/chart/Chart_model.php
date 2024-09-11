@@ -359,12 +359,17 @@ class Chart_model extends CI_Model
         return $this->db->get()->num_rows();
     }
 
-	public function getGrafikKehadiran($periode, $tanggal_awal, $tanggal_akhir) {
+	public function getGrafikKehadiran($periode = null, $tanggal_awal = null, $tanggal_akhir = null) {
 		$this->db->select("COUNT(id_absen) AS jumlah_kehadiran, DATE(tanggal_absen) AS tanggal, keterangan_absen");
 		$this->db->from("absensi");
-		$this->db->where('tanggal_absen >=', $tanggal_awal);
-		$this->db->where('tanggal_absen <=', $tanggal_akhir);
 	
+		// Filter berdasarkan tanggal jika ada
+		if ($tanggal_awal && $tanggal_akhir) {
+			$this->db->where('tanggal_absen >=', $tanggal_awal);
+			$this->db->where('tanggal_absen <=', $tanggal_akhir);
+		}
+	
+		// Pengelompokan berdasarkan periode jika ada
 		if ($periode == 'bulan') {
 			$this->db->group_by("YEAR(tanggal_absen), MONTH(tanggal_absen)");
 		} elseif ($periode == 'minggu') {
@@ -373,16 +378,24 @@ class Chart_model extends CI_Model
 			$this->db->group_by("DATE(tanggal_absen)");
 		}
 	
+		// Pengelompokan berdasarkan keterangan_absen
 		$this->db->group_by("keterangan_absen");
+	
 		return $this->db->get()->result();
 	}
 	
-	public function getPayrollPembayaran($periode, $tanggal_awal, $tanggal_akhir) {
+    // Mendapatkan data pembayaran payroll
+	public function getPayrollPembayaran($periode = null, $tanggal_awal = null, $tanggal_akhir = null) {
 		$this->db->select("SUM(take_home_pay_history) as total_payroll, DATE(periode_akhir_gaji_history) as tanggal");
 		$this->db->from("history_gaji");
-		$this->db->where('periode_akhir_gaji_history >=', $tanggal_awal);
-		$this->db->where('periode_akhir_gaji_history <=', $tanggal_akhir);
 	
+		// Filter berdasarkan tanggal jika ada
+		if ($tanggal_awal && $tanggal_akhir) {
+			$this->db->where('periode_akhir_gaji_history >=', $tanggal_awal);
+			$this->db->where('periode_akhir_gaji_history <=', $tanggal_akhir);
+		}
+	
+		// Pengelompokan berdasarkan periode jika ada
 		if ($periode == 'bulan') {
 			$this->db->group_by("YEAR(periode_akhir_gaji_history), MONTH(periode_akhir_gaji_history)");
 		} elseif ($periode == 'minggu') {
@@ -394,13 +407,14 @@ class Chart_model extends CI_Model
 		return $this->db->get()->result();
 	}
 	
-public function get_employee_summary() {
-    $this->db->select('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan, COUNT(*) AS jumlah');
-    $this->db->from('karyawan');
-    $this->db->join('penempatan', 'penempatan.id = karyawan.penempatan_id');
-    $this->db->group_by('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan');
-    $this->db->order_by('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan');
-    return $this->db->get()->result_array();
-}
 
+	public function get_employee_summary()
+    {
+        $this->db->select('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan, COUNT(*) AS jumlah');
+        $this->db->from('karyawan');
+        $this->db->join('penempatan', 'penempatan.id = karyawan.penempatan_id');
+        $this->db->group_by('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan');
+        $this->db->order_by('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan');
+        return $this->db->get()->result_array();
+    }
 }
