@@ -124,11 +124,19 @@ class Home extends CI_Controller
 
 
 		$periode = $this->input->get('periode', true) ?: 'bulan'; // default: bulan
-
+		$tanggal_awal = $this->input->get('tanggal_awal', true);
+		$tanggal_akhir = $this->input->get('tanggal_akhir', true);
+	
+		// Validasi dan set default tanggal jika tidak ada
+		if (!$tanggal_awal) $tanggal_awal = '2024-01-01'; // misalnya default tanggal awal
+		if (!$tanggal_akhir) $tanggal_akhir = date('Y-m-d'); // tanggal hari ini
+	
 		// Ambil data grafik kehadiran dan payroll berdasarkan periode
-		$data['grafik_kehadiran'] = $this->chart->getGrafikKehadiran($periode);
-		$data['grafik_payroll'] = $this->chart->getPayrollPembayaran($periode);
-		$data['periode'] = $periode; 
+		$data['grafik_kehadiran'] = $this->chart->getGrafikKehadiran($periode, $tanggal_awal, $tanggal_akhir);
+		$data['grafik_payroll'] = $this->chart->getPayrollPembayaran($periode, $tanggal_awal, $tanggal_akhir);
+		$data['periode'] = $periode;
+		$data['tanggal_awal'] = $tanggal_awal;
+		$data['tanggal_akhir'] = $tanggal_akhir;
 		
 		$data['status_nikah'] = $this->db->select('status_nikah, COUNT(*) as jumlah')
 			->from('karyawan')
