@@ -1,5 +1,15 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
+<style>
+    .card-body canvas {
+        width: 300px; /* Atur sesuai kebutuhan */
+        height: 200px; /* Atur sesuai kebutuhan */
+    }
+</style>
+<canvas id="grafikKehadiran" width="300" height="200"></canvas>
+<canvas id="grafikPayroll" width="300" height="200"></canvas>
+<canvas id="grafikStatusNikah" width="300" height="200"></canvas>
+<canvas id="grafikJenisKelamin" width="300" height="200"></canvas>
 
 
 	<!-- Content Row -->
