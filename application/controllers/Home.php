@@ -143,7 +143,7 @@ class Home extends CI_Controller
 			->get()
 			->result_array();
 		
-		$data['employees'] = $this->Employee_model->get_employee_summary();
+		$data['employees'] = $this->chart->get_employee_summary();
 		
 
         //menampilkan Halaman Utama
