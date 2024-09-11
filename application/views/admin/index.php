@@ -2,10 +2,6 @@
 <div class="container-fluid">
 
 	<style>
-		.card {
-			margin-bottom: 20px;
-		}
-
 		.card-body canvas {
 			width: 300px;
 			/* Atur lebar sesuai kebutuhan */
