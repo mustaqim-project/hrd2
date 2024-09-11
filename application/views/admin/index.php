@@ -110,7 +110,6 @@
 	</div>
 	<!-- row -->
 
-
 	<form method="get" action="<?= base_url('home/index') ?>">
 		<div class="form-group">
 			<label for="periode">Pilih Periode:</label>
@@ -123,23 +122,22 @@
 		<button type="submit" class="btn btn-primary">Tampilkan</button>
 	</form>
 
-	<!-- Grafik Kehadiran -->
+
 	<div class="card">
 		<div class="card-header">
 			Grafik Kehadiran Karyawan
 		</div>
 		<div class="card-body">
-			<canvas id="grafikKehadiran"></canvas>
+			<canvas id="grafikKehadiran" width="300" height="200"></canvas>
 		</div>
 	</div>
 
-	<!-- Grafik Payroll -->
-	<div class="card mt-4">
+	<div class="card">
 		<div class="card-header">
 			Grafik Pembayaran Payroll
 		</div>
 		<div class="card-body">
-			<canvas id="grafikPayroll"></canvas>
+			<canvas id="grafikPayroll" width="300" height="200"></canvas>
 		</div>
 	</div>
 
