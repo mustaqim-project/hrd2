@@ -205,26 +205,25 @@
             // Grafik Status Pernikahan
             var ctx3 = document.getElementById('grafikStatusNikah').getContext('2d');
             new Chart(ctx3, {
-                type: 'pie',
+                type: 'bar',
                 data: {
                     labels: <?= json_encode(array_column($status_nikah, 'status_nikah')) ?>,
                     datasets: [{
                         label: 'Jumlah Karyawan',
                         data: <?= json_encode(array_column($status_nikah, 'jumlah')) ?>,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)', 
-                            'rgba(54, 162, 235, 0.2)', 
-                            'rgba(255, 206, 86, 0.2)', 
-                            'rgba(75, 192, 192, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)', 
-                            'rgba(54, 162, 235, 1)', 
-                            'rgba(255, 206, 86, 1)', 
-                            'rgba(75, 192, 192, 1)'
-                        ],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Warna latar belakang bar
+                        borderColor: 'rgba(255, 99, 132, 1)', // Warna border bar
                         borderWidth: 1
                     }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
                 }
             });
 
