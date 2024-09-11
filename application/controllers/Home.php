@@ -130,7 +130,19 @@ class Home extends CI_Controller
 		$data['grafik_payroll'] = $this->chart->getPayrollPembayaran($periode);
 		$data['periode'] = $periode; // Kirim periode kembali ke view untuk dipilih secara default
 	
-		
+		$data['status_nikah'] = $this->db->select('status_nikah, COUNT(*) as jumlah')
+		->from('karyawan')
+		->group_by('status_nikah')
+		->get()
+		->result_array();
+
+		// Hitung jumlah karyawan berdasarkan jenis_kelamin
+		$data['jenis_kelamin'] = $this->db->select('jenis_kelamin, COUNT(*) as jumlah')
+				->from('karyawan')
+				->group_by('jenis_kelamin')
+				->get()
+				->result_array();
+				
         //menampilkan Halaman Utama
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
