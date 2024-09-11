@@ -398,4 +398,14 @@ class Chart_model extends CI_Model
 
         return $this->db->get()->result();
     }
+
+	public function get_employee_summary()
+    {
+        $this->db->select('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan, COUNT(*) AS jumlah');
+        $this->db->from('karyawan');
+        $this->db->join('penempatan', 'penempatan.id = karyawan.penempatan_id');
+        $this->db->group_by('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan');
+        $this->db->order_by('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan');
+        return $this->db->get()->result_array();
+    }
 }

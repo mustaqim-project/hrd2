@@ -160,57 +160,66 @@
 			<canvas id="grafikJenisKelamin" width="300" height="200"></canvas>
 		</div>
 	</div>
+
+	<div class="card">
+		<div class="card-header">
+			Grafik Status Karyawan - Jenis Kelamin - Penempatan
+		</div>
+		<div class="card-body">
+			<canvas id="grafikKaryawan" width="300" height="200"></canvas>
+		</div>
+	</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		// Grafik Kehadiran
-			// Grafik Kehadiran
-			var ctx1 = document.getElementById('grafikKehadiran').getContext('2d');
-			new Chart(ctx1, {
-				type: 'bar',
-				data: {
-					labels: <?= json_encode(array_column($grafik_kehadiran, 'tanggal')) ?>,
-					datasets: [{
-						label: 'Jumlah Kehadiran',
-						data: <?= json_encode(array_column($grafik_kehadiran, 'jumlah_kehadiran')) ?>,
-						backgroundColor: 'rgba(54, 162, 235, 0.2)',
-						borderColor: 'rgba(54, 162, 235, 1)',
-						borderWidth: 1
-					}]
-				},
-				options: {
-					scales: {
-						y: {
-							beginAtZero: true
-						}
+		// Grafik Kehadiran
+		var ctx1 = document.getElementById('grafikKehadiran').getContext('2d');
+		new Chart(ctx1, {
+			type: 'bar',
+			data: {
+				labels: <?= json_encode(array_column($grafik_kehadiran, 'tanggal')) ?>,
+				datasets: [{
+					label: 'Jumlah Kehadiran',
+					data: <?= json_encode(array_column($grafik_kehadiran, 'jumlah_kehadiran')) ?>,
+					backgroundColor: 'rgba(54, 162, 235, 0.2)',
+					borderColor: 'rgba(54, 162, 235, 1)',
+					borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true
 					}
 				}
-			});
+			}
+		});
 
-			// Grafik Payroll
-			var ctx2 = document.getElementById('grafikPayroll').getContext('2d');
-			new Chart(ctx2, {
-				type: 'bar',
-				data: {
-					labels: <?= json_encode(array_column($grafik_payroll, 'tanggal')) ?>,
-					datasets: [{
-						label: 'Total Pembayaran Payroll',
-						data: <?= json_encode(array_column($grafik_payroll, 'total_payroll')) ?>,
-						backgroundColor: 'rgba(255, 99, 132, 0.2)',
-						borderColor: 'rgba(255, 99, 132, 1)',
-						borderWidth: 1
-					}]
-				},
-				options: {
-					scales: {
-						y: {
-							beginAtZero: true
-						}
+		// Grafik Payroll
+		var ctx2 = document.getElementById('grafikPayroll').getContext('2d');
+		new Chart(ctx2, {
+			type: 'bar',
+			data: {
+				labels: <?= json_encode(array_column($grafik_payroll, 'tanggal')) ?>,
+				datasets: [{
+					label: 'Total Pembayaran Payroll',
+					data: <?= json_encode(array_column($grafik_payroll, 'total_payroll')) ?>,
+					backgroundColor: 'rgba(255, 99, 132, 0.2)',
+					borderColor: 'rgba(255, 99, 132, 1)',
+					borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true
 					}
 				}
-			});
-		
+			}
+		});
+
 
 		// Grafik Status Pernikahan
 		var ctx3 = document.getElementById('grafikStatusNikah').getContext('2d');
@@ -261,6 +270,71 @@
 				}
 			}
 		});
+
+		var ctx5 = document.getElementById('grafikKaryawan').getContext('2d');
+
+		var dataLabels = <?= json_encode(array_column($employees, 'penempatan')) ?>;
+		var jenisKelamin = <?= json_encode(array_column($employees, 'jenis_kelamin')) ?>;
+		var statusKerja = <?= json_encode(array_column($employees, 'status_kerja')) ?>;
+		var jumlah = <?= json_encode(array_column($employees, 'jumlah')) ?>;
+
+		var uniquePenempatan = [...new Set(dataLabels)];
+		var uniqueJenisKelamin = [...new Set(jenisKelamin)];
+		var uniqueStatusKerja = [...new Set(statusKerja)];
+
+		var datasets = uniqueJenisKelamin.map(function(jk) {
+			return {
+				label: jk,
+				data: uniquePenempatan.map(function(penempatan) {
+					return jumlah.filter(function(item, index) {
+						return jenisKelamin[index] === jk && dataLabels[index] === penempatan;
+					}).reduce((a, b) => a + b, 0);
+				}),
+				backgroundColor: 'rgba(54, 162, 235, 0.2)',
+				borderColor: 'rgba(54, 162, 235, 1)',
+				borderWidth: 1
+			};
+		});
+
+		new Chart(ctx5, {
+			type: 'bar',
+			data: {
+				labels: uniquePenempatan,
+				datasets: datasets
+			},
+			options: {
+				responsive: true,
+				plugins: {
+					legend: {
+						position: 'top',
+					},
+					tooltip: {
+						callbacks: {
+							label: function(context) {
+								var label = context.dataset.label || '';
+								if (label) {
+									label += ': ';
+								}
+								if (context.parsed.y !== null) {
+									label += context.parsed.y;
+								}
+								return label;
+							}
+						}
+					}
+				},
+				scales: {
+					x: {
+						stacked: true,
+					},
+					y: {
+						beginAtZero: true,
+						stacked: true
+					}
+				}
+			}
+		});
+
 	});
 </script>
 <!-- Chart -->

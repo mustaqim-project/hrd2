@@ -143,6 +143,16 @@ class Home extends CI_Controller
 				->get()
 				->result_array();
 				
+		$data['status_kerja'] = $this->db->select('status_kerja, COUNT(*) as jumlah')
+		->from('karyawan')
+		->group_by('status_kerja')
+		->group_by('penempatan')
+		->get()
+		->result_array();
+
+        $data['employees'] = $this->Employee_model->get_employee_summary();
+
+
         //menampilkan Halaman Utama
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
