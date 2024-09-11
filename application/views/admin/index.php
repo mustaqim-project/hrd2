@@ -110,6 +110,7 @@
 	</div>
 	<!-- row -->
 
+
 	<form method="get" action="<?= base_url('home/index') ?>">
 		<div class="form-group">
 			<label for="periode">Pilih Periode:</label>
@@ -122,23 +123,23 @@
 		<button type="submit" class="btn btn-primary">Tampilkan</button>
 	</form>
 
-
+	<!-- Grafik Kehadiran -->
 	<div class="card">
 		<div class="card-header">
 			Grafik Kehadiran Karyawan
 		</div>
 		<div class="card-body">
-			<canvas id="grafikKehadiran" width="300" height="200"></canvas>
+			<canvas id="grafikKehadiran"></canvas>
 		</div>
 	</div>
 
 	<!-- Grafik Payroll -->
-	<div class="card">
+	<div class="card mt-4">
 		<div class="card-header">
 			Grafik Pembayaran Payroll
 		</div>
 		<div class="card-body">
-			<canvas id="grafikPayroll" width="300" height="200"></canvas>
+			<canvas id="grafikPayroll"></canvas>
 		</div>
 	</div>
 
@@ -166,7 +167,6 @@
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		// Grafik Kehadiran
-		document.addEventListener('DOMContentLoaded', function() {
 			// Grafik Kehadiran
 			var ctx1 = document.getElementById('grafikKehadiran').getContext('2d');
 			new Chart(ctx1, {
@@ -212,7 +212,7 @@
 					}
 				}
 			});
-		});
+		
 
 		// Grafik Status Pernikahan
 		var ctx3 = document.getElementById('grafikStatusNikah').getContext('2d');
