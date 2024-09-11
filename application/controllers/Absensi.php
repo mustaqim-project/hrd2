@@ -15,7 +15,11 @@ class Absensi extends CI_Controller
         //Memanggil model absensi
         $this->load->model('absensi/Absensi_model', 'absensi');
     }
-
+    public function download_template() {
+		$this->load->helper('download');
+		$file_path = './uploads/Template_Import_Absensi.xlsx';
+		force_download($file_path, NULL);
+	}
     //Menampilkan halaman awal data absensi
     public function dataabsen()
     {
