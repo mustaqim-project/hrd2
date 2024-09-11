@@ -360,52 +360,45 @@ class Chart_model extends CI_Model
     }
 
 	// Menampilkan data grafik kehadiran karyawan per hari/minggu/bulan
-	public function getGrafikKehadiran($periode) {
-		// Query untuk menghitung jumlah absensi (termasuk hadir dan absen) berdasarkan keterangan_absen
-		$this->db->select("COUNT(id_absen) AS jumlah_kehadiran, DATE(tanggal_absen) AS tanggal, keterangan_absen");
-		$this->db->from("absensi");
-	
-		// Pengelompokan berdasarkan keterangan_absen dan periode yang dipilih
-		$this->db->group_by("keterangan_absen"); // Mengelompokkan berdasarkan keterangan_absen
-	
-		if ($periode == 'bulan') {
-			// Pengelompokan berdasarkan bulan dan tahun (untuk menghindari data lintas tahun)
-			$this->db->group_by("MONTH(tanggal_absen), YEAR(tanggal_absen)");
-		} elseif ($periode == 'minggu') {
-			// Pengelompokan berdasarkan minggu dan tahun
-			$this->db->group_by("WEEK(tanggal_absen), YEAR(tanggal_absen)");
-		} else {
-			// Pengelompokan berdasarkan hari
-			$this->db->group_by("DAY(tanggal_absen)");
-		}
-	
-		// Eksekusi query dan kembalikan hasilnya
-		return $this->db->get()->result();
-	}
-	
-    // Mendapatkan data pembayaran payroll
-    public function getPayrollPembayaran($periode) {
-        $this->db->select("SUM(take_home_pay_history) as total_payroll, DATE(periode_akhir_gaji_history) as tanggal");
-        $this->db->from("history_gaji");
-        
-        if($periode == 'bulan') {
-            $this->db->group_by("MONTH(periode_akhir_gaji_history)");
-        } elseif($periode == 'minggu') {
-            $this->db->group_by("WEEK(periode_akhir_gaji_history)");
-        } else {
-            $this->db->group_by("DAY(periode_akhir_gaji_history)");
-        }
-
-        return $this->db->get()->result();
+public function getGrafikKehadiran($periode) {
+    $this->db->select("COUNT(id_absen) AS jumlah_kehadiran, DATE(tanggal_absen) AS tanggal, keterangan_absen");
+    $this->db->from("absensi");
+    
+    if ($periode == 'bulan') {
+        $this->db->group_by("YEAR(tanggal_absen), MONTH(tanggal_absen)");
+    } elseif ($periode == 'minggu') {
+        $this->db->group_by("YEAR(tanggal_absen), WEEK(tanggal_absen)");
+    } else {
+        $this->db->group_by("DATE(tanggal_absen)");
     }
+    
+    $this->db->group_by("keterangan_absen");
+    return $this->db->get()->result();
+}
 
-	public function get_employee_summary()
-    {
-        $this->db->select('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan, COUNT(*) AS jumlah');
-        $this->db->from('karyawan');
-        $this->db->join('penempatan', 'penempatan.id = karyawan.penempatan_id');
-        $this->db->group_by('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan');
-        $this->db->order_by('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan');
-        return $this->db->get()->result_array();
+// Mendapatkan data pembayaran payroll
+public function getPayrollPembayaran($periode) {
+    $this->db->select("SUM(take_home_pay_history) as total_payroll, DATE(periode_akhir_gaji_history) as tanggal");
+    $this->db->from("history_gaji");
+    
+    if ($periode == 'bulan') {
+        $this->db->group_by("YEAR(periode_akhir_gaji_history), MONTH(periode_akhir_gaji_history)");
+    } elseif ($periode == 'minggu') {
+        $this->db->group_by("YEAR(periode_akhir_gaji_history), WEEK(periode_akhir_gaji_history)");
+    } else {
+        $this->db->group_by("DATE(periode_akhir_gaji_history)");
     }
+    
+    return $this->db->get()->result();
+}
+
+public function get_employee_summary() {
+    $this->db->select('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan, COUNT(*) AS jumlah');
+    $this->db->from('karyawan');
+    $this->db->join('penempatan', 'penempatan.id = karyawan.penempatan_id');
+    $this->db->group_by('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan');
+    $this->db->order_by('karyawan.jenis_kelamin, karyawan.status_kerja, penempatan.penempatan');
+    return $this->db->get()->result_array();
+}
+
 }

@@ -122,7 +122,6 @@
 		<button type="submit" class="btn btn-primary">Tampilkan</button>
 	</form>
 
-
 	<div class="card">
 		<div class="card-header">
 			Grafik Kehadiran Karyawan
@@ -141,7 +140,6 @@
 		</div>
 	</div>
 
-	<!-- Grafik Status Pernikahan Karyawan -->
 	<div class="card">
 		<div class="card-header">
 			Grafik Status Pernikahan Karyawan
@@ -151,7 +149,6 @@
 		</div>
 	</div>
 
-	<!-- Grafik Jenis Kelamin -->
 	<div class="card">
 		<div class="card-header">
 			Grafik Jenis Kelamin Karyawan
@@ -170,10 +167,10 @@
 		</div>
 	</div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
-		// Grafik Kehadiran
 		// Grafik Kehadiran
 		var ctx1 = document.getElementById('grafikKehadiran').getContext('2d');
 		new Chart(ctx1, {
@@ -220,7 +217,6 @@
 			}
 		});
 
-
 		// Grafik Status Pernikahan
 		var ctx3 = document.getElementById('grafikStatusNikah').getContext('2d');
 		new Chart(ctx3, {
@@ -230,8 +226,8 @@
 				datasets: [{
 					label: 'Jumlah Karyawan',
 					data: <?= json_encode(array_column($status_nikah, 'jumlah')) ?>,
-					backgroundColor: 'rgba(255, 99, 132, 0.2)', // Warna latar belakang bar
-					borderColor: 'rgba(255, 99, 132, 1)', // Warna border bar
+					backgroundColor: 'rgba(255, 99, 132, 0.2)',
+					borderColor: 'rgba(255, 99, 132, 1)',
 					borderWidth: 1
 				}]
 			},
@@ -271,72 +267,43 @@
 			}
 		});
 
+		// Grafik Status Karyawan - Jenis Kelamin - Penempatan
 		var ctx5 = document.getElementById('grafikKaryawan').getContext('2d');
 
 		var dataLabels = <?= json_encode(array_column($employees, 'penempatan')) ?>;
 		var jenisKelamin = <?= json_encode(array_column($employees, 'jenis_kelamin')) ?>;
-		var statusKerja = <?= json_encode(array_column($employees, 'status_kerja')) ?>;
-		var jumlah = <?= json_encode(array_column($employees, 'jumlah')) ?>;
+		var dataJumlah = <?= json_encode(array_column($employees, 'jumlah')) ?>;
 
-		var uniquePenempatan = [...new Set(dataLabels)];
-		var uniqueJenisKelamin = [...new Set(jenisKelamin)];
-		var uniqueStatusKerja = [...new Set(statusKerja)];
-
-		var datasets = uniqueJenisKelamin.map(function(jk) {
-			return {
-				label: jk,
-				data: uniquePenempatan.map(function(penempatan) {
-					return jumlah.filter(function(item, index) {
-						return jenisKelamin[index] === jk && dataLabels[index] === penempatan;
-					}).reduce((a, b) => a + b, 0);
-				}),
-				backgroundColor: 'rgba(54, 162, 235, 0.2)',
-				borderColor: 'rgba(54, 162, 235, 1)',
+		var datasets = [];
+		jenisKelamin.forEach((kelamin, index) => {
+			datasets.push({
+				label: kelamin,
+				data: dataJumlah[index],
+				backgroundColor: index % 2 === 0 ? 'rgba(255, 159, 64, 0.2)' : 'rgba(75, 192, 192, 0.2)',
+				borderColor: index % 2 === 0 ? 'rgba(255, 159, 64, 1)' : 'rgba(75, 192, 192, 1)',
 				borderWidth: 1
-			};
+			});
 		});
 
 		new Chart(ctx5, {
 			type: 'bar',
 			data: {
-				labels: uniquePenempatan,
+				labels: dataLabels,
 				datasets: datasets
 			},
 			options: {
 				responsive: true,
-				plugins: {
-					legend: {
-						position: 'top',
-					},
-					tooltip: {
-						callbacks: {
-							label: function(context) {
-								var label = context.dataset.label || '';
-								if (label) {
-									label += ': ';
-								}
-								if (context.parsed.y !== null) {
-									label += context.parsed.y;
-								}
-								return label;
-							}
-						}
-					}
-				},
+				maintainAspectRatio: false,
 				scales: {
-					x: {
-						stacked: true,
-					},
 					y: {
-						beginAtZero: true,
-						stacked: true
+						beginAtZero: true
 					}
 				}
 			}
 		});
-
 	});
 </script>
+
 <!-- Chart -->
 <!-- Bar Chart -->
 <!-- Jangan Dihapus -->
