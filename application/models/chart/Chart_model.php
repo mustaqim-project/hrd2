@@ -358,4 +358,44 @@ class Chart_model extends CI_Model
         $this->db->where('penempatan', 'PDC Toyota Cibitung');
         return $this->db->get()->num_rows();
     }
+
+	// Menampilkan data grafik kehadiran karyawan per hari/minggu/bulan
+	public function getGrafikKehadiran($periode) {
+		// Query untuk menghitung jumlah absensi (termasuk hadir dan absen) berdasarkan keterangan_absen
+		$this->db->select("COUNT(id_absen) AS jumlah_kehadiran, DATE(tanggal_absen) AS tanggal, keterangan_absen");
+		$this->db->from("absensi");
+	
+		// Pengelompokan berdasarkan keterangan_absen dan periode yang dipilih
+		$this->db->group_by("keterangan_absen"); // Mengelompokkan berdasarkan keterangan_absen
+	
+		if ($periode == 'bulan') {
+			// Pengelompokan berdasarkan bulan dan tahun (untuk menghindari data lintas tahun)
+			$this->db->group_by("MONTH(tanggal_absen), YEAR(tanggal_absen)");
+		} elseif ($periode == 'minggu') {
+			// Pengelompokan berdasarkan minggu dan tahun
+			$this->db->group_by("WEEK(tanggal_absen), YEAR(tanggal_absen)");
+		} else {
+			// Pengelompokan berdasarkan hari
+			$this->db->group_by("DAY(tanggal_absen)");
+		}
+	
+		// Eksekusi query dan kembalikan hasilnya
+		return $this->db->get()->result();
+	}
+	
+    // Mendapatkan data pembayaran payroll
+    public function getPayrollPembayaran($periode) {
+        $this->db->select("SUM(take_home_pay_history) as total_payroll, DATE(periode_akhir_gaji_history) as tanggal");
+        $this->db->from("history_gaji");
+        
+        if($periode == 'bulan') {
+            $this->db->group_by("MONTH(periode_akhir_gaji_history)");
+        } elseif($periode == 'minggu') {
+            $this->db->group_by("WEEK(periode_akhir_gaji_history)");
+        } else {
+            $this->db->group_by("DAY(periode_akhir_gaji_history)");
+        }
+
+        return $this->db->get()->result();
+    }
 }
