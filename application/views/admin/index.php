@@ -158,14 +158,14 @@
 		</div>
 	</div>
 
-	<div class="card">
+	<!-- <div class="card">
 		<div class="card-header">
 			Grafik Status Karyawan - Jenis Kelamin - Penempatan
 		</div>
 		<div class="card-body">
 			<canvas id="grafikKaryawan" width="300" height="200"></canvas>
 		</div>
-	</div>
+	</div> -->
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
